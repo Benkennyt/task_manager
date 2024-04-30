@@ -1,0 +1,227 @@
+.sign-in-fm {
+    width: 100vw;
+    display: flex;
+    padding-top: 50px;
+}
+
+.sign-in-fm .form-1 {
+    width: 100%;
+    margin-left: 70px;
+}
+
+.sign-in-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-right h1 {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.sign-in-right p {
+    width: 500px;
+}
+
+.sign-in-fm .reg-right {
+    width: 100%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-in-fm .form-1 h1 {
+    padding-left: 0px !important;
+    margin-top: 0px;
+}
+
+.sign-in-fm .form-1 h3 {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+
+.sign-in-fm form {
+    width: 400px;
+}
+
+
+
+.sign-in-fm input {
+    width: calc(100% - 12px);
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: inter;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white);
+    outline-color: var(--primary-color);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+.sign-in-fm input::placeholder, .sign-in-fm input::-webkit-input-placeholder{
+    color: var(--black);
+    font-family: Inter;
+}
+
+.sign-in-fm input[type = 'text'], .sign-in-fm input[type = 'password'], .sign-in-fm input[type= 'email']{
+    font-family: Inter;
+    padding-left: 10px;
+}
+
+.sign-in-fm .pass{
+    position: relative;
+}
+
+.sign-in-fm .pass .show-hide{
+    position: absolute;
+    height: 20px;
+    width: 40px;
+    top: 27%;
+    right: .5%;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.sign-in-fm .pass .show-hide svg{
+    fill: rgba(0, 0, 0, 0.533);
+}
+
+.sign-in-fm .login-err {
+    color: red;
+    margin-top: -10px;
+}
+
+.sign-in-fm  .sign-up-btn {
+    background-color: var(--logoColor);
+    color: var(--white);
+    width: 100%;
+}
+
+
+.sign-in-fm  .sign-up-btn i {
+    scale: 1.7;
+    margin-right: 20px;
+}
+
+.sign-in-fm .error-message {
+    
+    margin-top: -15px;
+    color: red;
+}
+
+.other-signin-option {
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.other-signin-option button {
+    display: flex;
+    gap: 30px;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px rgb(186, 185, 185);
+    background-color: white !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.other-signin-option .facebook-btn svg {
+    fill: #3b5998;
+}
+
+.other-signin-option button svg{
+    width: 20px;
+}
+
+/* media queries............... */
+
+@media screen and  (max-width : 992px){
+    .sign-in-fm {
+        display: flex;
+    }
+
+    .sign-in-right {
+        width: fit-content;
+        margin-left: 40px;
+        margin-right: 20px;
+    }
+
+    .sign-in-right p {
+        width: 100%;
+    }
+
+    .sign-in-right img {
+        display: none;
+    }
+}
+
+@media screen and  (max-width : 792px){
+    .sign-in-right{
+        display: none;
+    }
+
+    .sign-in-fm {
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .sign-in-fm .form-1 {
+        width: fit-content;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .other-signin-option button svg {
+        min-width: 20px;
+    }
+}
+
+@media screen and  (max-width : 460px){
+   
+    .other-signin-option button {
+       gap: 20px;
+    }
+}
+
+
+@media screen and  (max-width : 439px){
+    .other-signin-option {
+        width: 100%;
+    }
+
+    .sign-in-fm form {
+        width: 95vw;
+    }
+}
+
+@media screen and  (max-width : 362px){
+
+    .other-signin-option {
+        flex-direction: column;
+        gap: 10px;
+        width: 95vw;
+    }
+    .other-signin-option button {
+        width: 100%;
+    }
+
+}
+

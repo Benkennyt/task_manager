@@ -1,0 +1,49 @@
+.landn-pg-cont {
+    width: 100%;
+}
+
+.landn-pg-cont-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.landn-pg-cont-2 .intro{
+    width:fit-content;
+    margin-top: 70px;
+    margin-left: 10px;
+    color: var(--introGrey);
+}
+
+.landn-pg-cont-2 .intro h1{
+    width: fit-content;
+    margin: 0;
+    line-height: .8;
+}
+
+.landn-pg-cont-2 .intro h1:first-child {
+    font-size: 90px;
+}
+
+.landn-pg-cont-2 .intro h1:nth-child(3) {
+    font-size: 70px;
+}
+
+.landn-pg-cont-2 .intro h1:nth-child(5) {
+    font-size: 40px;
+}
+
+.landn-pg-cont-2 .intro p {
+    width: 800px;
+    margin-top: 40px;
+}
+
+.landn-pg-cont-2 .intro p span {
+    color: var(--logoColor);
+    font-weight: 600;
+}
+
+.landn-pg-cont-2 .intro .get-started {
+    background-color: var(--logoColor);
+    color: var(--white);
+}

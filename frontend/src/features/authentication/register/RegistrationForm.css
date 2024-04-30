@@ -1,0 +1,131 @@
+.register-fm {
+    width: 100vw;
+    display: flex;
+    padding-top: 50px;
+}
+
+.register-fm .form-1 {
+    width: 100%;
+    margin-left: 20px;
+}
+
+.register-fm .reg-right {
+    width: 100%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-fm .form-1 h1 {
+    padding-left: 0px !important;
+    margin-top: 0px;
+}
+
+.register-fm .form-1 h3 {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+
+.register-fm form {
+    width: 400px;
+}
+
+
+
+.register-fm input {
+    width: calc(100% - 12px);
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: inter;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white);
+    outline-color: var(--primary-color);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+.register-fm input::placeholder, .register-fm input::-webkit-input-placeholder{
+    color: var(--black);
+    font-family: Inter;
+}
+
+.register-fm input[type = 'text'], .register-fm input[type = 'password'], .register-fm input[type= 'email']{
+    font-family: Inter;
+    padding-left: 10px;
+}
+
+.register-fm .pass{
+    position: relative;
+}
+
+.register-fm .pass .show-hide{
+    position: absolute;
+    height: 20px;
+    width: 40px;
+    top: 27%;
+    right: .5%;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.register-fm .pass .show-hide svg{
+    fill: rgba(0, 0, 0, 0.533);
+}
+
+.register-fm  .sign-up-btn {
+    background-color: var(--logoColor);
+    color: var(--white);
+    width: 100%;
+}
+
+
+.register-fm  .sign-up-btn i {
+    scale: 1.7;
+    margin-right: 20px;
+}
+
+.register-fm .error-message {
+    
+    margin-top: -15px;
+    color: red;
+}
+
+.other-signin-option {
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.other-signin-option button {
+    width: 45%;
+    border: none;
+}
+
+.other-signin-option button {
+    display: flex;
+    gap: 30px;
+    
+    border: solid 1px rgb(186, 185, 185);
+    background-color: white !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.other-signin-option .facebook-btn svg {
+    fill: #3b5998;
+}
+
+.other-signin-option button svg{
+    width: 20px;
+}
