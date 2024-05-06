@@ -1,3 +1,5 @@
+
+
 export interface ILoginForm1 {
     username: string,
     password: string,
@@ -32,13 +34,14 @@ export interface UserDetails {
     is_Staff: boolean,
 }
 
-// export interface IinitialState {
-//     isLoggedin: boolean,
-//     isLoginLoading:boolean,
-//     isRegisterLoading:boolean,
-//     loginData: UserDetails,
-//     registerData:UserDetails,
-//     isErrorLogin:boolean,
-//     loginErrorData: string,
-//     isErrorRegister:boolean,
-// }
+export interface IBoardForm {
+    name: string,
+    checked: []
+
+}
+
+export class BoardForm implements IBoardForm {
+    name: string= '';
+    checked: [] = [];
+}
+

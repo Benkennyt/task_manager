@@ -22,13 +22,14 @@ export const login = createAsyncThunk<string, any>('login', async (value, _thunk
 })
 
 
-export const register = createAsyncThunk<string, any>('register', async (value, _thunkAPI) => {
+export const register = createAsyncThunk<void, any>('register', async (value, _thunkAPI) => {
   try {
     return await api.post('api/user/register',{username:value.username, first_name:value.firstname, email:value.email, password:value.password})
   } catch (error: any) {
-    return error
+    return console.log(error)
   }
 })
+
 
 
 
@@ -63,9 +64,8 @@ const userSlice = createSlice({
   builder.addCase(register.pending, (state) => {
     state.isRegisterLoading = true;
   });
-  builder.addCase(register.fulfilled, (state, action) => {
+  builder.addCase(register.fulfilled, (state) => {
       state.isRegisterLoading = false;
-      state.registerData = action.payload
   })
   builder.addCase(register.rejected, (state) => {
     state.isRegisterLoading = false;

@@ -14,10 +14,60 @@ export const GoogleIcon = () => {
     return (
       <svg enableBackground="new 0 0 128 128" id="Social_Icons" version="1.1" viewBox="0 0 128 128" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Google"><rect clipRule="evenodd" fill="none" fillRule="evenodd" height="128" width="128"/><path clipRule="evenodd" d="M27.585,64c0-4.157,0.69-8.143,1.923-11.881L7.938,35.648    C3.734,44.183,1.366,53.801,1.366,64c0,10.191,2.366,19.802,6.563,28.332l21.558-16.503C28.266,72.108,27.585,68.137,27.585,64" fill="#FBBC05" fillRule="evenodd"/><path clipRule="evenodd" d="M65.457,26.182c9.031,0,17.188,3.2,23.597,8.436L107.698,16    C96.337,6.109,81.771,0,65.457,0C40.129,0,18.361,14.484,7.938,35.648l21.569,16.471C34.477,37.033,48.644,26.182,65.457,26.182" fill="#EA4335" fillRule="evenodd"/><path clipRule="evenodd" d="M65.457,101.818c-16.812,0-30.979-10.851-35.949-25.937    L7.938,92.349C18.361,113.516,40.129,128,65.457,128c15.632,0,30.557-5.551,41.758-15.951L86.741,96.221    C80.964,99.86,73.689,101.818,65.457,101.818" fill="#34A853" fillRule="evenodd"/><path clipRule="evenodd" d="M126.634,64c0-3.782-0.583-7.855-1.457-11.636H65.457v24.727    h34.376c-1.719,8.431-6.397,14.912-13.092,19.13l20.474,15.828C118.981,101.129,126.634,84.861,126.634,64" fill="#4285F4" fillRule="evenodd"/></g></g></svg>
     )
-  }
+}
   
-  export const FacebookIcon = () => {
-    return (
-     <svg height="100%"  version="1.1" viewBox="0 0 512 512" width="100%" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M374.245,285.825l14.104,-91.961l-88.233,0l0,-59.677c0,-25.159 12.325,-49.682 51.845,-49.682l40.117,0l0,-78.291c0,0 -36.408,-6.214 -71.214,-6.214c-72.67,0 -120.165,44.042 -120.165,123.775l0,70.089l-80.777,0l0,91.961l80.777,0l0,222.31c16.197,2.542 32.798,3.865 49.709,3.865c16.911,0 33.512,-1.323 49.708,-3.865l0,-222.31l74.129,0Z" /></svg>
-    )
-  }
+export const FacebookIcon = () => {
+  return (
+  <svg height="100%"  version="1.1" viewBox="0 0 512 512" width="100%" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M374.245,285.825l14.104,-91.961l-88.233,0l0,-59.677c0,-25.159 12.325,-49.682 51.845,-49.682l40.117,0l0,-78.291c0,0 -36.408,-6.214 -71.214,-6.214c-72.67,0 -120.165,44.042 -120.165,123.775l0,70.089l-80.777,0l0,91.961l80.777,0l0,222.31c16.197,2.542 32.798,3.865 49.709,3.865c16.911,0 33.512,-1.323 49.708,-3.865l0,-222.31l74.129,0Z" /></svg>
+  )
+}
+
+export const BoardsIcon = () => {
+  return <svg className="bi bi-list-task" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" fillRule="evenodd"/><path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/><path d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" fillRule="evenodd"/></svg>
+}
+
+export const HamburgerIcon = () => {
+  return (
+    <svg
+      width={"24px"}
+      viewBox="0 0 512 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <g data-name="1" id="_1">
+        <path d="M441.13,166.52h-372a15,15,0,1,1,0-30h372a15,15,0,0,1,0,30Z" />
+        <path d="M441.13,279.72h-372a15,15,0,1,1,0-30h372a15,15,0,0,1,0,30Z" />
+        <path d="M441.13,392.92h-372a15,15,0,1,1,0-30h372a15,15,0,0,1,0,30Z" />
+      </g>
+    </svg>
+  );
+};
+
+export const CloseIcon = () => {
+  return (
+    <svg
+      className="bi bi-x-lg"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+        fillRule="evenodd"
+      />
+      <path
+        d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+        fillRule="evenodd"
+      />
+    </svg>
+  );
+};
+
+export const TrashIcon = () => {
+  return <svg id="Outline" viewBox="0 0 512 512" width='20px'  xmlns="http://www.w3.org/2000/svg"><defs></defs><path className="cls-1" d="M380.93,94.82h-69.4a56.43,56.43,0,0,0-111.06,0h-67.4a55,55,0,0,0-54.89,54.89v18.14a11.34,11.34,0,0,0,11.34,11.34h25.39l9.61,268a11.34,11.34,0,0,0,11.33,10.93h242.3a11.34,11.34,0,0,0,11.33-10.93l9.61-268h25.39a11.34,11.34,0,0,0,11.34-11.34V149.71A55,55,0,0,0,380.93,94.82ZM256,71.09a33.82,33.82,0,0,1,32.24,23.73H223.76A33.82,33.82,0,0,1,256,71.09ZM367.21,435.41H146.79L137.6,179.19H376.4Zm45.93-278.9H100.86v-6.8a32.25,32.25,0,0,1,32.21-32.21H380.93a32.25,32.25,0,0,1,32.21,32.21Z"/><path className="cls-1" d="M255.16,395.4a11.34,11.34,0,0,0,11.34-11.34V220.23a11.34,11.34,0,1,0-22.67,0V384.06A11.34,11.34,0,0,0,255.16,395.4Z"/><path className="cls-1" d="M311.85,395.4a11.34,11.34,0,0,0,11.33-11.34V220.23a11.34,11.34,0,1,0-22.67,0V384.06A11.34,11.34,0,0,0,311.85,395.4Z"/><path className="cls-1" d="M199.38,395.4a11.34,11.34,0,0,0,11.34-11.34V220.23a11.34,11.34,0,0,0-22.68,0V384.06A11.34,11.34,0,0,0,199.38,395.4Z"/></svg>
+}
+  
+export const EditPen = () => {
+  return <svg enableBackground="new 0 0 50 50" height="20px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="20px" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><polyline fill="none" points="  42.948,12.532 10.489,44.99 3,47 5.009,39.511 37.468,7.052 " stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="2"/><path d="M45.749,11.134c-0.005,0.004,0.824-0.825,0.824-0.825c1.901-1.901,1.901-4.983,0.002-6.883c-1.903-1.902-4.984-1.9-6.885,0  c0,0-0.83,0.83-0.825,0.825L45.749,11.134z"/><polygon points="5.191,39.328 10.672,44.809 3.474,46.526 "/></svg>
+}

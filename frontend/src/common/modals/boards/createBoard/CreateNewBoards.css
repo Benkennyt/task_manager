@@ -1,0 +1,182 @@
+    .ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.606) !important;
+}
+.ReactModal__Content {
+    width: 400px;
+    margin: auto;
+    height: 450px;
+    border-radius: 10px !important;
+    border: none !important;
+    
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.board-contents-2 .section .tasks::-webkit-scrollbar {
+  display: none;
+}
+.ReactModal__Content .add-new-board-hd {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ReactModal__Content .board-hd-closebtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.board-hd-closebtn .close-board-modal {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.board-hd-closebtn .close-board-modal:hover {
+    color: var(--logoColor);
+}
+
+.ReactModal__Content form {
+    display: grid;
+}
+
+.ReactModal__Content input {
+    width: calc(100% - 12px);
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white);
+    outline-color: var(--primary-color);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+.ReactModal__Content input::placeholder, .ReactModal__Content input::-webkit-input-placeholder{
+    color: var(--textGrey);
+    font-family: Inter;
+}
+
+.ReactModal__Content input[type = 'text']{
+    font-family: Inter;
+    padding-left: 10px;
+}
+
+.ReactModal__Content .pp {
+    color: rgb(130, 143, 163);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    margin-bottom: 8px;
+}
+
+.ReactModal__Content .column {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.ReactModal__Content .column p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+/* checkbox */
+
+
+  .checkbox:hover .check {
+    stroke-dashoffset: 0;
+  }
+
+  .checkbox {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+  }
+  .checkbox .background {
+    fill: #ccc;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox .stroke {
+    fill: none;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox .check {
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    stroke-dashoffset: 22;
+    stroke-dasharray: 22;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox input[type=checkbox] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    opacity: 0;
+    -appearance: none;
+    -webkit-appearance: none;
+  }
+  .checkbox input[type=checkbox]:hover {
+    cursor: pointer;
+  }
+  .checkbox input[type=checkbox]:checked + svg .background {
+    fill: var(--logoColor);
+  }
+  .checkbox input[type=checkbox]:checked + svg .stroke {
+    stroke-dashoffset: 0;
+  }
+  .checkbox input[type=checkbox]:checked + svg .check {
+    stroke-dashoffset: 0;
+  }
+
+.create_board {
+    margin-top: 20px;
+    background-color: var(--logoColor);
+    color: var(--white);
+}
+
+
+/* create-board-201 */
+
+.create-board-201 {
+  display: grid;
+  place-items: center;
+  line-height: .6;
+}
+
+.create-board-201 img {
+    width: 270px ;
+    height: 270px;
+
+}
+
+.create-board-201 h3 {
+  font-size: 25px;
+  margin-top: 50px;
+  font-weight: 500;
+}

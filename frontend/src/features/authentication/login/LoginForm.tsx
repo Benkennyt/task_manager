@@ -25,7 +25,6 @@ const LoginForm = () => {
     }
   }, [loginData])
    
-  console.log(loginErrorData)
   const dispatch = useAppDispatch()
 
     const handlePasswordShowHide = () => {
@@ -98,6 +97,7 @@ const LoginForm = () => {
                     </Form>
                 )}
             </Formik>
+            <p className="dont-hv-acc">Don't have an account? <span onClick={() => navigate('/sign-up')}>Sign Up</span></p>
             <div className="other-signin-option">
               <button
                 

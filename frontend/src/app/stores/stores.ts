@@ -1,13 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore} from "@reduxjs/toolkit";
 import userReducer from "../api/userSlice";
+import taskReducer from "../api/boardSlice"
 import { useDispatch } from "react-redux";
+
+
 
 
 
 export const store = configureStore({
   reducer: {
-    user: userReducer
-  }
+    user: userReducer,
+    boards: taskReducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
 });
 
 

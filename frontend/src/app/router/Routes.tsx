@@ -1,11 +1,12 @@
 import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
-import App from "./layout/App";
+
 import RequiredAuth from "./RequiredAuth";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import RegistrationForm from "../../features/authentication/register/RegistrationForm";
 import LoginForm from "../../features/authentication/login/LoginForm";
 import Home from "../../features/home/Home";
+import App from "../layout/App";
 
 export const routes: RouteObject[] = [
     {

@@ -6,7 +6,7 @@
 
 .register-fm .form-1 {
     width: 100%;
-    margin-left: 20px;
+    margin-left: 70px;
 }
 
 .register-fm .reg-right {
@@ -122,10 +122,96 @@
     font-size: 15px;
 }
 
+.already-hv-acc span{
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--logoColor);
+}
+
+.already-hv-acc span:hover{
+    filter: contrast(.5);
+}
+
+
 .other-signin-option .facebook-btn svg {
     fill: #3b5998;
 }
 
 .other-signin-option button svg{
     width: 20px;
+}
+
+
+/* media queries............... */
+
+@media screen and  (max-width : 992px){
+    .register-fm {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .register-fm .form-1 {
+        width: fit-content;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .reg-right {
+        display: none !important;
+    }
+
+    .reg-right p {
+        width: 100%;
+    }
+
+    .reg-right img {
+        display: none;
+    }
+}
+
+@media screen and  (max-width : 792px){
+    .reg-right{
+        display: none;
+    }
+
+    .register-fm {
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .other-signin-option button svg {
+        min-width: 20px;
+    }
+}
+
+@media screen and  (max-width : 460px){
+   
+    .other-signin-option button {
+       gap: 20px;
+    }
+}
+
+
+@media screen and  (max-width : 439px){
+    .other-signin-option {
+        width: 100%;
+    }
+
+    .register-fm form {
+        width: 95vw;
+    }
+}
+
+@media screen and  (max-width : 362px){
+
+    .other-signin-option {
+        flex-direction: column;
+        gap: 10px;
+        width: 95vw;
+    }
+    .other-signin-option button {
+        width: 100%;
+    }
+
 }

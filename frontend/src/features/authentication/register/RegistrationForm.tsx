@@ -7,7 +7,7 @@ import { FacebookIcon, GoogleIcon } from "../../../assets/svg/SVG";
 import { signUpSchema } from "../schemas";
 import { RegisterForm1 } from "../../../app/models/user";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/stores/stores";
 import { register } from "../../../app/api/userSlice";
 
@@ -17,7 +17,9 @@ const RegistrationForm = () => {
   const {isRegisterLoading, registerData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  console.log(registerData)
+
+
+
   useEffect(() => {
     if (registerData?.status === 201) {
       navigate('/sign-in')
@@ -37,7 +39,6 @@ const RegistrationForm = () => {
   }
 
   const registerUser = (value: any) => {
-    console.log(value)
     dispatch(register(value))
   }
 
@@ -126,6 +127,7 @@ const RegistrationForm = () => {
                     </Form>
                 )}
             </Formik>
+            <p className="already-hv-acc">Already have an account? <span onClick={() => navigate('/sign-in')} >Sign In</span></p>
             <div className="other-signin-option">
               <button
                 
@@ -141,7 +143,7 @@ const RegistrationForm = () => {
             </div>
         </div>
         <div className="reg-right">
-            <img src={RegsitrationSVG} alt="" />
+          <img src={RegsitrationSVG} alt="" />
         </div>
     </div>
   )

@@ -9,7 +9,7 @@ interface InputTempProps {
   inputType?: HTMLInputTypeAttribute | undefined;
   placeholder?: string;
   defaultValue?: any;
-  value?: string;
+  value?: any;
   children?: ReactNode;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
@@ -25,7 +25,6 @@ interface InputTempProps {
 export const InputTemp = ({
   name,
   id,
-  label,
   inputType,
   placeholder,
   defaultValue,

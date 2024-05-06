@@ -1,0 +1,196 @@
+.sidebar {
+    background-color: var(--white);
+    border-right: solid 1px var(--borderGrey);
+    max-height: 100vh;
+    width: 300px;
+}
+
+.sidebar .logo {
+    padding: 0;
+    padding-left: 30px;
+    line-height: 2;
+}
+
+.logo-2 {
+    height: 50px;
+    width: 50px;
+    background-color: var(--logoColor);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100vw;
+    font-size: 28px;
+    margin-left: 10px;
+}
+
+.board-hub {
+    padding-left: 30px;
+    margin-bottom: 0;
+    color: var(--textGrey); 
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+}
+
+
+.boards-list {
+    padding: 0px;
+    margin: 0;
+    width: 300px;
+    max-height: calc(100vh - 156px);
+    overflow-y: auto;
+}
+
+.boards-list .trash-icon{
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.boards-list .edit-icon{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.boards-list .trash-icon svg {
+    fill: var(--textGrey);
+}
+
+.boards-list .trash-icon:hover svg {
+    fill: red;
+}
+
+.boards-list .edit-icon svg path, .boards-list .edit-icon svg  {
+    fill: var(--textGrey);
+}
+
+.boards-list .edit-icon svg polyline {
+    stroke: var(--textGrey);
+}
+
+.boards-list .edit-icon:hover svg path, .boards-list .edit-icon:hover svg  {
+    fill: var(--logoColor);
+}
+
+.boards-list .edit-icon:hover svg polyline {
+    stroke: var(--logoColor);
+}
+
+
+.boards-list .board-icon .react-tooltip {
+    
+    border-radius: 5px;
+    font-size: 10px;
+    z-index: 100;
+}
+
+
+
+.boards-list li {
+    display: flex;
+   align-items: center;
+}
+
+.boards-list .board{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 15px;
+    padding-left: 10px;
+    color: var(--textGrey);
+    font-weight: 500;
+    font-size: 15px;
+    gap: 20px;
+    border-radius: 100vw 0 0 100vw;
+    cursor: pointer; 
+}
+
+.boards-list .board:hover {
+    background-color: var(--listHoverColor) ;
+    color: var(--logoColor);
+}
+
+.boards-list li:first-child{
+    margin-top: 20px;
+}
+
+.boards-list li:last-child {
+    margin-bottom: 20px;
+}
+
+.boards-list .board svg {
+    fill: var(--textGrey) ;
+}
+
+.boards-list .board:hover svg {
+    fill: var(--logoColor);
+}
+
+/* add-active */
+.boards-list .active{
+    background-color: var(--logoColor);
+    color: var(--white);
+    position: relative;
+}
+
+.boards-list .active:hover {
+    background-color: var(--logoColor);
+    color: var(--white);
+}
+
+.boards-list .active svg {
+    fill: var(--white);
+}
+
+.boards-list .active:hover svg {
+    fill: var(--white);
+}
+
+.create-board {
+    display: flex;
+    align-items: center; 
+    height: 50px; 
+    padding-left: 70px;
+    font-weight: 500;
+    font-size: 15px;
+    border-top: 1px solid var(--borderGrey);
+    gap: 20px;
+    cursor: pointer; 
+}
+
+.create-board:hover {
+    color: var(--logoColor);
+}
+
+.create-board p {
+    margin: 0;
+}
+
+/* medial queries */
+
+@media screen and (max-width : 975px) {
+    .sidebar {
+        position: absolute;
+        width: 100%;
+        z-index: 1 ;
+        animation: slideInLeft 0.5s forwards;
+        box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    }
+
+    .sidebar-hide {
+        z-index: 1;
+        animation: slideOutLeft 0.5s forwards;
+    }
+
+    .sidebar .logo {
+        display: none;
+    }
+
+    .boards-2 .boards-list {
+        width: 100%;
+    }
+}

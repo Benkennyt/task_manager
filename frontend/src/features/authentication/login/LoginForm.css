@@ -122,6 +122,16 @@
     color: red;
 }
 
+.dont-hv-acc span{
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--logoColor);
+}
+
+.dont-hv-acc span:hover{
+    filter: contrast(.5);
+}
+
 .other-signin-option {
     margin-top: 20px;
     width: 400px;

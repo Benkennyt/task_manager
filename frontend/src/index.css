@@ -1,32 +1,33 @@
 :root {
+  /* font-family: "Plus Jakarta Sans", sans-serif; */
   font-family: Inter;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: black;
-  background-color: #f4f5f9;
+  background-color: #F4F7FD;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   margin: 0;
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
   /* colors */
   --white: white;
   --black: black;
+  --backgroundColor:#F4F7FD;
   --navGrey:rgb(69, 68, 68);
+  --textGrey:rgb(130, 143, 163);
+  --borderGrey:rgb(225, 225, 225);
   --introGrey:rgb(42, 42, 42);
-  --green: #68a463;
-  --logoColor: #ff8438;
+  --logoColor: #635FC7;
   --placeHolder:rgb(175, 172, 172);
+  --listHoverColor: #d5d3fb;
   
 }
 
@@ -41,8 +42,19 @@ button {
   color:var(--black) ;
   background-color: var(--white);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition:filter .1s ease,transform .1s ease-in;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+
 }
+
+button:hover {
+  filter: brightness(.95);
+  transform: translateY(-2px);
+}
+
+
+
+
 
 input:focus {
   outline-offset:2px !important;
@@ -51,6 +63,8 @@ input:focus {
 }
 
 .logo{
+  display: flex;
+  align-items: center;
   height: fit-content;
   color: var(--logoColor);
   font-size: 35px;
@@ -58,15 +72,49 @@ input:focus {
   font-weight: bold;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.logo-2 {
+  height: 50px;
+  width: 50px;
+  background-color: var(--logoColor);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100vw;
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+.ReactModalPortal {
+  z-index: 2000;
+  position: relative;
+}
+
+.ReactModal__Overlay {
+  overflow: scroll;
+  scroll-behavior: smooth;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.ReactModal__Content {
+  position: unset !important;
+  
+}
+
+@media screen and (max-width: 450px) {
+  .ReactModal__Content {
+    width: 80vw !important;
+    
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+@keyframes slideInLeft {
+  0% {transform: translateY(-200%); opacity: 0;}
+  100%{transform: translateY(23%); opacity: 1;}
+}
+
+@keyframes slideOutLeft {
+  0% {transform: translateY(23%); opacity: 1;}
+  100%{transform: translateY(-200%); opacity: 0;}
 }
