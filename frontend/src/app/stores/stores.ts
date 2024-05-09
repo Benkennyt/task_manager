@@ -1,6 +1,7 @@
 import { configureStore} from "@reduxjs/toolkit";
 import userReducer from "../api/userSlice";
-import taskReducer from "../api/boardSlice"
+import boardReducer from "../api/boardSlice";
+import taskReducer from "../api/taskSlice"
 import { useDispatch } from "react-redux";
 
 
@@ -10,7 +11,8 @@ import { useDispatch } from "react-redux";
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    boards: taskReducer
+    boards: boardReducer,
+    tasks: taskReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

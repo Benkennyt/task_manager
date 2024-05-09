@@ -13,14 +13,27 @@ class Board(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="boards")
 
     def __str__(self):
-        return self.title
+        return self.name
     
 
 class Task(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    description = models.TextField(default='description')
     created_at = models.DateTimeField(auto_now_add=True)
-    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
+    status = models.CharField(max_length=60)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name="tasks")
 
     def __str__(self):
-        return self.title
+        return self.name
+
+
+class SubTask(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="subtasks")
+
+    def __str__(self):
+        return self.name

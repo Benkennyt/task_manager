@@ -36,7 +36,7 @@ export const updateBoard = createAsyncThunk<any, any>('updateBoard', async (valu
 
 
 
-const taskSlice = createSlice({
+const boardSlice = createSlice({
   name: "boards",
   initialState: {
    isLoading: {
@@ -115,4 +115,4 @@ const taskSlice = createSlice({
   }
 });
 
-export default taskSlice.reducer;
+export default boardSlice.reducer;

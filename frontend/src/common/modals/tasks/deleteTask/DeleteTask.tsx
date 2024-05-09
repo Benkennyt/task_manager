@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import SuccessIcon from "../../../../assets/svg/success_icon.svg";
 
 const DeleteBoard = (props:any) => {
-    const {modal, handleModals, boardID} = props   
+    const {deleteBoardModal, handleModals, boardID} = props   
     const [boardDeleted, setBoardDeleted] = useState(false)
     const {data, isError, isLoading } = useSelector((state:any) => state.boards)
 
@@ -27,7 +27,7 @@ const DeleteBoard = (props:any) => {
 
   return (
     <ReactModal
-    isOpen={modal == 'deleteBoard'}
+    isOpen={deleteBoardModal}
     contentLabel="delete board modal"
     shouldCloseOnOverlayClick={true}
     shouldCloseOnEsc={true}

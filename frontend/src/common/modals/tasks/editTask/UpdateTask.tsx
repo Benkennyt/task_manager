@@ -9,7 +9,7 @@ import { Field, Formik } from 'formik';
 import { Form } from 'react-router-dom';
 
 const UpdateBoard = (props:any) => {
-  const {modal, handleModals, boardID, boardIndex} = props
+  const {updateBoardModal, handleModals, boardID, boardIndex} = props
   const {data, isError, isLoading } = useSelector((state:any) => state.boards)
 
 
@@ -33,7 +33,7 @@ const UpdateBoard = (props:any) => {
 
   return (
     <ReactModal
-    isOpen={modal == 'updateBoard'}
+    isOpen={updateBoardModal}
     contentLabel="update board modal"
     shouldCloseOnOverlayClick={true}
     shouldCloseOnEsc={true}

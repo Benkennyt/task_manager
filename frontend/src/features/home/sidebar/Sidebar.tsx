@@ -11,18 +11,32 @@ const Sidebar = (props:any) => {
     const {handleModals, setBoardID, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex} = props;
     const {data} = useSelector((state:any) => state.boards)
     const dispatch = useAppDispatch()
+    // const boardID = localStorage.getItem(BOARD_INDEX)
+    // localStorage.setItem(BOARD_ID, options.id)
+    //     localStorage.setItem(BOARD_INDEX, options.index)
 
     const capitalizeFirstLetter = (name: string) => {
         const words = name.split(' ')
-        for (let i = 0; i < words.length; i++) {
-         words[i] = words[i][0].toUpperCase() + words[i].slice(1) 
-         }
-          return words.join(" ")
-        }
 
-        useEffect(() => {
-          dispatch(getBoards())
-        }, [])
+        for (let i = 0; i < words.length; i++) {
+            if (words[i] != ''){
+                words[i] = words[i][0].toUpperCase() + words[i].slice(1) 
+            }
+        }
+        return words.join(" ")
+    }
+    
+    
+    useEffect(() => {
+        dispatch(getBoards())
+    }, [])
+
+    useEffect(()=> {
+        if(data && data.boardData && data.boardData.data && data.boardData.data[0] ) {
+            setBoardID( data.boardData.data[0].id)
+        }
+    }, [data])
+    
 
     const handleDeleteBoard = (id: string) => {
         setBoardID(id)
@@ -35,7 +49,7 @@ const Sidebar = (props:any) => {
         handleModals('updateBoard')
     }
 
-
+    
   return (
     <div className={toggleSideBar ? "sidebar" : "sidebar sidebar-hide" }>
         <label className="logo">TaskBender <div className='logo-2'>TB</div></label>
@@ -55,7 +69,7 @@ const Sidebar = (props:any) => {
                             <Tooltip id='my-tooltip'/>
                             <EditPen/>
                         </div>
-                        <div onClick={() => {setActiveBoard(index), setToggleSideBar(false)}} className={activeBoard === index ? 'board active' : 'board'}>
+                        <div onClick={() => {setActiveBoard(index), setToggleSideBar(false),  setBoardID(board.id)}} className={activeBoard === index ? 'board active' : 'board'}>
                             <BoardsIcon/>
                             <p>{capitalizeFirstLetter(board.name)}</p>
                         </div>

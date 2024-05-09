@@ -11,7 +11,8 @@ import { createBoard, getBoards } from '../../../../app/api/boardSlice';
 import { useSelector } from 'react-redux';
 
 const CreateNewBoards = (props:any) => {
-    const {createNewBoardModal, handleModals} = props
+    const [modalReset, setModalReset] = useState(false)
+    const {modal, handleModals} = props
     const [inputField, setInputField] = useState(new BoardForm());
     
     const {data, isError, isLoading } = useSelector((state:any) => state.boards)
@@ -25,13 +26,14 @@ const CreateNewBoards = (props:any) => {
 
     const handleCreateBoard =(val: any)=> {
         dispatch(createBoard(val))
+        setModalReset(true)
     }
 
     const delay = (ms: number | undefined) => new Promise(res => setTimeout(res, ms));
 
   return (
     <ReactModal
-    isOpen={createNewBoardModal}
+    isOpen={modal == 'newBoard'}
     contentLabel="create board modal"
     shouldCloseOnOverlayClick={true}
     shouldCloseOnEsc={true}
@@ -40,7 +42,7 @@ const CreateNewBoards = (props:any) => {
     ariaHideApp={false}
     >
         {
-            data?.createBoardData && data.createBoardData?.status === 201 ? 
+            modalReset && data.createBoardData && data.createBoardData.status === 201 ? 
                 <div className="create-board-201">
                     <img src={SuccessIcon} alt="" />
                     <h3>New Board Created</h3>
@@ -67,6 +69,7 @@ const CreateNewBoards = (props:any) => {
                   await delay(1000);
                   handleModals("newBoard")
                   dispatch(getBoards())
+                  setModalReset(false)
                   
               } }
 

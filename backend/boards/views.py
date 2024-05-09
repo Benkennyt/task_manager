@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializers import BoardSerializer
-from .models import Board
+from .serializers import BoardSerializer, TaskSerializer, SubTaskSerializer
+from .models import Board, Task, SubTask
 
 class BoardListCreate(generics.ListCreateAPIView):
     serializer_class = BoardSerializer
@@ -35,3 +35,77 @@ class BoardUpdate(generics.UpdateAPIView):
         user = self.request.user
         return Board.objects.filter(author=user)
 
+
+# Task................
+
+class TaskListCreate(generics.ListCreateAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        board_id = self.kwargs['board_id']
+        return Task.objects.filter(board=board_id)
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            board_instance = Board.objects.get(id=self.kwargs['board_id'])
+            serializer.save(board=board_instance)
+        else:
+            print(serializer.errors)
+
+    
+
+
+class TaskDelete(generics.DestroyAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        board_id = self.kwargs['board_id']
+        return Task.objects.filter(board=board_id)
+
+class TaskUpdate(generics.UpdateAPIView):
+    serializer_class = BoardSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        board_id = self.kwargs['board_id']
+        return Task.objects.filter(board=board_id)
+    
+
+# subtask................
+
+class SubTaskListCreate(generics.ListCreateAPIView):
+    serializer_class = SubTaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        task_id = self.kwargs['task_id']
+        task = Task.objects.get(id=task_id)
+        return Task.objects.filter(task=task)
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            task_id = self.kwargs['task_id']
+            serializer.save(task=task_id)
+        else:
+            print(serializer.errors)
+
+
+class SubTaskDelete(generics.DestroyAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        task_id = self.kwargs['task_id']
+        task = Task.objects.get(id=task_id)
+        return Task.objects.filter(task=task)
+
+class SubTaskUpdate(generics.UpdateAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        task_id = self.kwargs['task_id']
+        task = Task.objects.get(id=task_id)
+        return Task.objects.filter(task=task)

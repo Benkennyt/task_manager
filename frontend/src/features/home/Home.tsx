@@ -8,12 +8,11 @@ import DeleteBoard from "../../common/modals/boards/deleteBoard/DeleteBoard";
 import { useSelector } from "react-redux";
 import { USER_DETAILS } from "../../constants";
 import UpdateBoard from "../../common/modals/boards/editBoard/UpdateBoard";
+import CreateNewTask from "../../common/modals/tasks/createTask/CreateNewTask";
 
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false)
-  const [createNewBoardModal, setCreateNewBoardModal] = useState(false)
-  const [deleteBoardModal, setDeleteBoardModal] = useState(false);
-  const [updateBoardModal, setUpdateBoardModal] = useState(false);
+  const [modal, setModal] = useState('')
   const [boardID, setBoardID] = useState('');
   const [boardIndex, setBoardIndex] = useState(null);
   const [activeBoard, setActiveBoard] = useState(null)
@@ -34,28 +33,10 @@ const Home = () => {
 
 
   const handleModals = (id: string) => {
-    if (createNewBoardModal && id === 'newBoard') {
-        setCreateNewBoardModal(false)
-    }else if(!createNewBoardModal && id === 'newBoard') {
-      setCreateNewBoardModal(true)
-      setDeleteBoardModal(false)
-      setUpdateBoardModal(false)
-    }
-
-    if (deleteBoardModal && id === 'deleteBoard') {
-      setDeleteBoardModal(false)
-    }else if(!deleteBoardModal && id === 'deleteBoard'){
-      setDeleteBoardModal(true)
-      setCreateNewBoardModal(false)
-      setUpdateBoardModal(false)
-    }
-
-    if (updateBoardModal && id === 'updateBoard') {
-      setUpdateBoardModal(false)
-    }else if(!updateBoardModal && id === 'updateBoard'){
-      setUpdateBoardModal(true)
-      setCreateNewBoardModal(false)
-      setDeleteBoardModal(false)
+    if (modal === '') {
+      setModal(id)
+    } else {
+      setModal('')
     }
   }
 
@@ -73,20 +54,21 @@ const Home = () => {
       return capitalizeFirstLetter(data.boardData?.data[activeBoard].name)
     } else if (activeBoard === null && data.boardData && data.boardData.data && data.boardData.data[0]){
       return capitalizeFirstLetter(data.boardData.data[0].name)
-    } else{
+    } else if (!data.boardData){
       return "Board"
     }
   }
   
   
-
+  console.log(boardID)
 
   return (
     <div className="home-cont">
       <Sidebar toggleSideBar={toggleSideBar} handleModals={handleModals} setBoardID={setBoardID} boardID={boardID} boardIndex={boardIndex} setBoardIndex={setBoardIndex} activeBoard={activeBoard} setActiveBoard={setActiveBoard} setToggleSideBar={setToggleSideBar}/>
-      <CreateNewBoards handleModals={handleModals}  createNewBoardModal={createNewBoardModal}/>
-      <DeleteBoard handleModals={handleModals}  deleteBoardModal={deleteBoardModal} setDeleteBoardModal={setDeleteBoardModal} boardID={boardID} />
-      <UpdateBoard handleModals={handleModals}  updateBoardModal={updateBoardModal} boardID={boardID} boardIndex={boardIndex} />
+      <CreateNewBoards handleModals={handleModals}  modal={modal}/>
+      <DeleteBoard handleModals={handleModals}  modal={modal} boardID={boardID} />
+      <UpdateBoard handleModals={handleModals}  modal={modal} boardID={boardID} boardIndex={boardIndex} />
+      <CreateNewTask handleModals={handleModals}  modal={modal} boardID={boardID}/>
       <div className="home-cont-2">
         <div className="board-cont">
           <div className="board-cont-header">
@@ -95,8 +77,8 @@ const Home = () => {
                 <label className="logo">
                   <div className='logo-2'>TB</div>
                 </label>
-                  <h2>{handleBoardNameHeader() || "Board"}</h2>
-                  <button>+Add New Task</button>
+                  <h2>{handleBoardNameHeader()}</h2>
+                  <button onClick={() => handleModals('newTask')}>+Add New Task</button>
               </div>
               <div className="profile">
                   <p>Welcome, {capitalizeFirstLetter(userDetails.username)}</p>

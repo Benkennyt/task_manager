@@ -1,0 +1,190 @@
+
+#newTaskModal {
+  height: 400px !important;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+#newTaskModal .add-new-task-hd {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#newTaskModal .task-hd-closebtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.task-hd-closebtn .close-task-modal {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.task-hd-closebtn .close-task-modal:hover {
+    color: var(--logoColor);
+}
+
+#newTaskModal .new_task_form {
+    display: grid;
+}
+
+#newTaskModal input, #newTaskModal textarea {
+    width: calc(100% - 12px);
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white);
+    outline-color: var(--primary-color);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+
+#newTaskModal textarea {
+  height: 100px !important;
+  min-width: 97%;
+  max-width: 400px;
+  resize: none;
+  padding: 5px;
+  font-family: Inter;
+}
+
+#newTaskModal input::placeholder, #newTaskModal input::-webkit-input-placeholder{
+    color: var(--textGrey);
+    font-family: Inter;
+}
+
+#newTaskModal input[type = 'text']{
+    font-family: Inter;
+    padding-left: 10px;
+}
+
+
+#newTaskModal .pp {
+    color: rgb(130, 143, 163);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    margin-bottom: 8px;
+}
+
+#newTaskModal .column {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#newTaskModal .column p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.create_task_btn {
+  margin-top: 20px;
+  background-color: var(--logoColor);
+  color: var(--white);
+  margin-bottom: 30px;
+}
+
+
+/* select box */
+
+
+
+/* .new_task_form select option {
+  background-color: var(--white);
+  padding: 30px;
+  
+} */
+
+.new_task_form select {  
+  background-color:var(--white);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20448%22%20enable-background%3D%22new%200%200%20256%20448%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.arrow%7Bfill%3A@{arrow}%3B%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22arrow%22%20d%3D%22M255.9%20168c0-4.2-1.6-7.9-4.8-11.2-3.2-3.2-6.9-4.8-11.2-4.8H16c-4.2%200-7.9%201.6-11.2%204.8S0%20163.8%200%20168c0%204.4%201.6%208.2%204.8%2011.4l112%20112c3.1%203.1%206.8%204.6%2011.2%204.6%204.4%200%208.2-1.5%2011.4-4.6l112-112c3-3.2%204.5-7%204.5-11.4z%22%2F%3E%3C%2Fsvg%3E%0A");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: auto 50%;
+  border-radius: 2px;
+  border: none;
+  color: var(--black);
+  font-family: Inter;
+  padding: 10px 30px 10px 10px;
+  outline: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  text-indent: 5px;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  &::-ms-expand { display: none };
+}
+
+
+.new_task_form select option {
+  cursor: pointer;
+}
+
+.add-subtask-hd {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.subtask-input {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}
+
+.subtask-input input {
+  margin: 0 !important;
+}
+
+
+.subtask-input button {
+  background-color: transparent !important;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 5px;
+}
+
+.subtask-input button:hover {
+  color: var(--logoColor);
+}
+
+.add-subtask {
+  margin-top: 10px;
+}
+
+
+
+
+/* create-task-201 */
+
+.create-task-201 {
+  display: grid;
+  place-items: center;
+  line-height: .6;
+}
+
+.create-task-201 img {
+    width: 270px ;
+    height: 270px;
+
+}
+
+.create-task-201 h3 {
+  font-size: 25px;
+  margin-top: 50px;
+  font-weight: 500;
+}
+
