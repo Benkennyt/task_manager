@@ -14,11 +14,11 @@ import { register } from "../../../app/api/userSlice";
 const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
   const [showPassword, setShowPassword] = useState(false);
-  const {isRegisterLoading, registerData} = useSelector((state:any) => state.user)
+  const {isRegisterLoading, registerData, registerErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-
-
+  const bankendErrorUsername = registerErrorData && registerErrorData?.username &&  registerErrorData?.username[0]
+  const bankendErrorEmail = registerErrorData &&  registerErrorData?.email && registerErrorData?.email[0]
 
   useEffect(() => {
     if (registerData?.status === 201) {
@@ -70,6 +70,7 @@ const RegistrationForm = () => {
                             placeholder="Username"
                             errors={errors}
                             touched={touched}
+                            bckenderr={bankendErrorUsername}
                         />
                         <InputTemp 
                             id="firstname"
@@ -92,6 +93,7 @@ const RegistrationForm = () => {
                             placeholder="Email"
                             errors={errors}
                             touched={touched}
+                            bckenderr={bankendErrorEmail}
                         />
                         <InputTemp 
                             id="password" 
@@ -143,7 +145,7 @@ const RegistrationForm = () => {
             </div>
         </div>
         <div className="reg-right">
-          <img src={RegsitrationSVG} alt="" />
+          <img src={RegsitrationSVG} alt="registration svg" />
         </div>
     </div>
   )

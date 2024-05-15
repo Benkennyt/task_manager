@@ -8,12 +8,9 @@ import { useAppDispatch } from '../../../app/stores/stores';
 import { getBoards } from '../../../app/api/boardSlice';
 
 const Sidebar = (props:any) => {
-    const {handleModals, setBoardID, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex} = props;
+    const {handleModals, setBoardID, setBoardID2, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex} = props;
     const {data} = useSelector((state:any) => state.boards)
     const dispatch = useAppDispatch()
-    // const boardID = localStorage.getItem(BOARD_INDEX)
-    // localStorage.setItem(BOARD_ID, options.id)
-    //     localStorage.setItem(BOARD_INDEX, options.index)
 
     const capitalizeFirstLetter = (name: string) => {
         const words = name.split(' ')
@@ -39,12 +36,12 @@ const Sidebar = (props:any) => {
     
 
     const handleDeleteBoard = (id: string) => {
-        setBoardID(id)
+        setBoardID2(id)
         handleModals('deleteBoard')
     }
 
     const handleUpdateBoard = (options: { id: any; index: any; }) => {
-        setBoardID(options.id)
+        setBoardID2(options.id)
         setBoardIndex(options.index)
         handleModals('updateBoard')
     }

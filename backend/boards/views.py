@@ -53,6 +53,15 @@ class TaskListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
+
+class TaskList(generics.ListAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        task_id = self.kwargs['pk']
+        return Task.objects.filter(id=task_id)
+
     
 
 
@@ -65,7 +74,7 @@ class TaskDelete(generics.DestroyAPIView):
         return Task.objects.filter(board=board_id)
 
 class TaskUpdate(generics.UpdateAPIView):
-    serializer_class = BoardSerializer
+    serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -81,31 +90,28 @@ class SubTaskListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         task_id = self.kwargs['task_id']
-        task = Task.objects.get(id=task_id)
-        return Task.objects.filter(task=task)
+        return SubTask.objects.filter(task=task_id)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            task_id = self.kwargs['task_id']
-            serializer.save(task=task_id)
+            task_instance = Task.objects.get(id=self.kwargs['task_id'])
+            serializer.save(task=task_instance)
         else:
             print(serializer.errors)
 
 
 class SubTaskDelete(generics.DestroyAPIView):
-    serializer_class = TaskSerializer
+    serializer_class = SubTaskSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         task_id = self.kwargs['task_id']
-        task = Task.objects.get(id=task_id)
-        return Task.objects.filter(task=task)
+        return SubTask.objects.filter(task=task_id)
 
 class SubTaskUpdate(generics.UpdateAPIView):
-    serializer_class = TaskSerializer
+    serializer_class = SubTaskSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         task_id = self.kwargs['task_id']
-        task = Task.objects.get(id=task_id)
-        return Task.objects.filter(task=task)
+        return SubTask.objects.filter(task=task_id)

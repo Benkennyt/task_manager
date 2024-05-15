@@ -1,9 +1,14 @@
-.ReactModal__Content .add-new-board-hd {
+#create-board-modal {
+  max-height: 450px;
+  height: fit-content;
+}
+
+#create-board-modal .add-new-board-hd {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.ReactModal__Content .board-hd-closebtn {
+#create-board-modal .board-hd-closebtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,11 +25,11 @@
     color: var(--logoColor);
 }
 
-.ReactModal__Content form {
+#create-board-modal form {
     display: grid;
 }
 
-.ReactModal__Content input {
+#create-board-modal input {
     width: calc(100% - 12px);
     height: 40px;
     margin-bottom: 20px;
@@ -40,17 +45,17 @@
     color: var(--black);
 }
 
-.ReactModal__Content input::placeholder, .ReactModal__Content input::-webkit-input-placeholder{
+#create-board-modal input::placeholder, #create-board-modal input::-webkit-input-placeholder{
     color: var(--textGrey);
     font-family: Inter;
 }
 
-.ReactModal__Content input[type = 'text']{
+#create-board-modal input[type = 'text']{
     font-family: Inter;
     padding-left: 10px;
 }
 
-.ReactModal__Content .pp {
+#create-board-modal .pp {
     color: rgb(130, 143, 163);
     display: block;
     font-size: 12px;
@@ -59,14 +64,14 @@
     margin-bottom: 8px;
 }
 
-.ReactModal__Content .column {
+#create-board-modal .column {
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
 }
 
-.ReactModal__Content .column p {
+#create-board-modal .column p {
     font-size: 13px;
     font-weight: 400;
 }
@@ -141,23 +146,16 @@
     color: var(--white);
 }
 
+.create_board:disabled {
+  opacity: .5;
+}
+
 
 /* create-board-201 */
 
-.create-board-201 {
-  display: grid;
-  place-items: center;
-  line-height: .6;
-}
+.close-successful-modal {
 
-.create-board-201 img {
-    width: 270px ;
-    height: 270px;
-
-}
-
-.create-board-201 h3 {
-  font-size: 25px;
-  margin-top: 50px;
-  font-weight: 500;
+  width: 100%;
+  display: flex;
+  justify-content: right;
 }

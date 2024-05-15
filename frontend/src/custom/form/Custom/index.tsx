@@ -17,6 +17,7 @@ interface InputTempProps {
   disabled?: boolean;
   autoComplete?: string;
   errors?: any;
+  bckenderr?:any;
   touched?: any;
   handlePasswordShowHide?: any,
   showPassword?: boolean,
@@ -34,8 +35,9 @@ export const InputTemp = ({
   disabled,
   autoComplete,
   errors,
+  bckenderr,
   touched,
-    handlePasswordShowHide,
+  handlePasswordShowHide,
   showPassword,
 }: InputTempProps) => {
 
@@ -60,7 +62,7 @@ export const InputTemp = ({
         {id === 'password' || id === 'confirmPassword'? <div className="show-hide" onClick={handlePasswordShowHide}>{showPassword ? <ShowPasswordIcon /> : <HidePasswordIcon />}</div>: ''}
       </div>
       {errors[name || ''] && touched[name || ''] ? (<p className='error-message'>{String(errors[name || ''])}</p>) : null}
+      {<p className="error-message">{bckenderr}</p>}
     </div>
   );
 };
-

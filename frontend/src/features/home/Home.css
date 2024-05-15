@@ -89,15 +89,26 @@
 
 .board-contents-2 .section {
     width: 100%;
+    padding-left:10px;
 }
 
 .board-contents-2 .section .tasks {
     display: grid;
-   gap: 10px;
+    gap: 10px;
 }
 
+.no-task {
+    width: fit-content;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.no-task span {
+    font-weight: 500;
+}
 .content-headers {
-    width: 90%;
+    width: 100%;
     height: 70px;
 }
 
@@ -109,6 +120,7 @@
     margin: 0;
     margin-left: 20px;
     padding-top: 20px;
+    letter-spacing: 2.4px;
 
 }
 
@@ -116,18 +128,30 @@
     width: 90%;
     height: 5px;
     border-radius: 100vw;
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     margin-top: 10px;
 }
 
 .board-contents-2 .section .task {
+    position: relative;
     background-color: var(--white);
+    overflow: hidden;
+    margin-left: 20px;
     width: 90%;
-    height: fit-content;
+    height: auto;
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    cursor: pointer;
 }
+
+.board-contents-2 .section .task:hover {
+    color:var(--logoColor);
+    background-color: rgb(235, 241, 250);
+    
+}
+
+
 
 .board-contents-2 .section .task:last-child{
     margin-bottom: 20px;
@@ -139,15 +163,36 @@
     line-height: 19px;
     padding:20px 10px 5px 10px ;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.board-contents-2 .section .task .substacks-count {
+.board-contents-2 .section .task .subtasks-count {
     padding: 0 0 20px 10px;
     margin: 0;
     font-size: 12px;
     font-weight: 700;
     line-height: 15px;
     color: var(--textGrey);
+}
+
+.task:hover .delete-task-icon {
+    display: flex;
+}
+
+.task .delete-task-icon {
+    background-color: #625fc737;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    height: 25%;
+    width: 100%;
+}
+
+
+.task .delete-task-icon-2:hover svg{
+    fill: red;
 }
 
 

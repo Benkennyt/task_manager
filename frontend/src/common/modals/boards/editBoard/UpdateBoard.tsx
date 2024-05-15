@@ -5,11 +5,12 @@ import {getBoards, updateBoard } from '../../../../app/api/boardSlice';
 import { useSelector } from 'react-redux';
 import { CloseIcon } from '../../../../assets/svg/SVG';
 import SuccessIcon from "../../../../assets/svg/success_icon.svg";
+import errIcon from "../../../../assets/svg/errIcon.svg";
 import { Field, Formik } from 'formik';
 import { Form } from 'react-router-dom';
 
 const UpdateBoard = (props:any) => {
-  const {modal, handleModals, boardID, boardIndex} = props
+  const {modal, handleModals, boardID2, boardIndex} = props
   const {data, isError, isLoading } = useSelector((state:any) => state.boards)
 
 
@@ -43,11 +44,21 @@ const UpdateBoard = (props:any) => {
     >
         {
             data?.updateBoardData && data.updateBoardData?.status === 200 ? 
-                <div className="create-board-201">
-                    <img src={SuccessIcon} alt="" />
-                    <h3>Board Updated</h3>
-                </div> 
-            : isError.isUpdateBoardError ? <div className="create-board-err"></div> 
+               
+                <div className="successful-201">
+                <img src={SuccessIcon} alt="success Icon" />
+                <h3>Board updated</h3>
+              </div>
+            : isError.isUpdateBoardError ? 
+            <div className="err-mdal">
+            {/* <div className="err-hd-closebtn">
+              <div onClick={() => { { handleTaskDeleteBtn() } }} className="close-err-modal">
+                <CloseIcon />
+              </div>
+            </div>
+            <img src={errIcon} alt="error icon" /> */}
+            <p>An error occured while trying to updating board.</p>
+          </div>
             :
             <>
             <div className="board-hd-closebtn">
@@ -58,7 +69,7 @@ const UpdateBoard = (props:any) => {
                   <CloseIcon />
               </div>
           </div><Formik
-              initialValues={{name: handleInitialBoardName(), id: boardID}}
+              initialValues={{name: handleInitialBoardName(), id: boardID2}}
               enableReinitialize
               onSubmit={ async (value) => {
                   handleUpdateBoard(value);

@@ -1,0 +1,260 @@
+.task-hd-closebtn {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+}
+
+#task-view {
+  max-height: 450px;
+  height: fit-content;
+}
+
+
+
+#task-view .pp{
+    margin-bottom: 5px;
+}
+
+.task-title-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-title-edit p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.task-edit {
+    height: 20px;
+}
+
+.task-edit svg {
+    cursor: pointer;
+    opacity: .5;
+}
+
+.task-edit svg:hover {
+    opacity: 1;
+}
+
+#task-view select {
+    background-color: var(--white);
+    background-image: url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20448%22%20enable-background%3D%22new%200%200%20256%20448%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.arrow%7Bfill%3A@{arrow}%3B%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22arrow%22%20d%3D%22M255.9%20168c0-4.2-1.6-7.9-4.8-11.2-3.2-3.2-6.9-4.8-11.2-4.8H16c-4.2%200-7.9%201.6-11.2%204.8S0%20163.8%200%20168c0%204.4%201.6%208.2%204.8%2011.4l112%20112c3.1%203.1%206.8%204.6%2011.2%204.6%204.4%200%208.2-1.5%2011.4-4.6l112-112c3-3.2%204.5-7%204.5-11.4z%22%2F%3E%3C%2Fsvg%3E%0A);
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: auto 50%;
+    border-radius: 2px;
+    border: none;
+    color: var(--black);
+    font-family: Inter;
+    padding: 10px 30px 10px 10px;
+    margin-bottom: 20px;
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    text-indent: 5px;
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#task-view .subtasks{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    line-height: 15px;
+}
+
+#task-view .subtask {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f7fd;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#task-view .subtask p {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    margin-left: 10px;
+}
+
+#task-view .subtask:first-child {
+    margin-top: 10px;
+}
+
+
+
+  .checkbox-wrapper {
+    box-sizing: border-box;
+    --background-color: #fff;
+    --checkbox-height: 25px;
+  }
+
+  @-moz-keyframes dothabottomcheck-19 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) / 2);
+    }
+  }
+
+  @-webkit-keyframes dothabottomcheck-19 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) / 2);
+    }
+  }
+
+  @keyframes dothabottomcheck-19 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) / 2);
+    }
+  }
+
+  @keyframes dothatopcheck-19 {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) * 1.2);
+    }
+  }
+
+  @-webkit-keyframes dothatopcheck-19 {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) * 1.2);
+    }
+  }
+
+  @-moz-keyframes dothatopcheck-19 {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 0;
+    }
+    100% {
+      height: calc(var(--checkbox-height) * 1.2);
+    }
+  }
+
+  .checkbox-wrapper input[type=checkbox] {
+    display: none;
+  }
+
+  .checkbox-wrapper .check-box {
+    height: var(--checkbox-height);
+    width: var(--checkbox-height);
+    background-color: transparent;
+    border: calc(var(--checkbox-height) * .1) solid var(--logoColor);
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+  }
+  .checkbox-wrapper .check-box::before,
+  .checkbox-wrapper .check-box::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: calc(var(--checkbox-height) * .2);
+    background-color: var(--logoColor);
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 5px;
+    content: " ";
+    -webkit-transition: opacity ease 0.5;
+    -moz-transition: opacity ease 0.5;
+    transition: opacity ease 0.5;
+  }
+  .checkbox-wrapper .check-box::before {
+    top: calc(var(--checkbox-height) * .72);
+    left: calc(var(--checkbox-height) * .41);
+    box-shadow: 0 0 0 calc(var(--checkbox-height) * .05) var(--background-color);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+  }
+  .checkbox-wrapper .check-box::after {
+    top: calc(var(--checkbox-height) * .37);
+    left: calc(var(--checkbox-height) * .05);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .checkbox-wrapper input[type=checkbox]:checked + .check-box,
+  .checkbox-wrapper .check-box.checked {
+    border-color: var(--logoColor);
+  }
+  .checkbox-wrapper input[type=checkbox]:checked + .check-box::after,
+  .checkbox-wrapper .check-box.checked::after {
+    height: calc(var(--checkbox-height) / 2);
+    -moz-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+    -o-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+    -webkit-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+    animation: dothabottomcheck-19 0.2s ease 0s forwards;
+  }
+  .checkbox-wrapper input[type=checkbox]:checked + .check-box::before,
+  .checkbox-wrapper .check-box.checked::before {
+    height: calc(var(--checkbox-height) * 1.2);
+    -moz-animation: dothatopcheck-19 0.4s ease 0s forwards;
+    -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
+    -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
+    animation: dothatopcheck-19 0.4s ease 0s forwards;
+  }
+
+
+
+
+/* update task button */
+
+.update_task {
+  background-color: var(--logoColor);
+  color: var(--white);
+  margin-top: 20px;
+}
+
+.update_task:disabled {
+  opacity: .5;
+}

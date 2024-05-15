@@ -52,7 +52,70 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* error modal */
+.err-mdal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
+.err-mdal img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.err-hd-closebtn {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}
+
+.err-hd-closebtn svg {
+  width: 20px !important;
+}
+
+.err-hd-closebtn:hover svg{
+  color: var(--logoColor);
+}
+
+/* successful-201 */
+
+.successful-201 {
+  display: grid;
+  place-items: center;
+  line-height: .6;
+}
+
+.successful-201 svg{
+  cursor: pointer;
+  
+}
+
+.successful-201 svg:hover{
+  fill: var(--logoColor);
+}
+
+.successful-201 img {
+    width: 100px ;
+    height: 100px;
+
+}
+
+.successful-201 h3 {
+  font-size: 25px;
+  margin-top: 50px;
+  font-weight: 500;
+}
+
+.close-successful-modal {
+
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
 
 
 

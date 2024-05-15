@@ -115,7 +115,7 @@ const LoginForm = () => {
       <div className="sign-in-right">
         <h1>Welcome Back :)</h1>
         <p>To keep connected with us please login with your personal information by email address and password</p>
-        <img src={LoginSVG} alt="" />
+        <img src={LoginSVG} alt="login svg" />
       </div>
     </div>
   )

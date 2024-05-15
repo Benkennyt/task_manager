@@ -40,6 +40,7 @@
     width: 300px;
     max-height: calc(100vh - 156px);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .boards-list .trash-icon{
@@ -107,6 +108,13 @@
     gap: 20px;
     border-radius: 100vw 0 0 100vw;
     cursor: pointer; 
+}
+
+.boards-list .board p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 170px;
 }
 
 .boards-list .board:hover {

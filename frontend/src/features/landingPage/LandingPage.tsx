@@ -20,7 +20,7 @@ const LandingPage = () => {
           </p>
           <button className="get-started">Get Started</button>
         </section>
-        <img src={ImageForLandpg} alt="" />
+        <img src={ImageForLandpg} alt="landing-pg image" />
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-#delete-board-modal {
+#delete-task-modal {
     position: relative !important;
     display: flex;
     flex-direction: column;
@@ -6,42 +6,42 @@
     height: fit-content;
 }
 
-#delete-board-modal svg {
+#delete-task-modal svg {
     width: 100px;
 }
 
-#delete-board-modal h3{
+#delete-task-modal h3{
     margin-bottom: 0;
 }
 
-#delete-board-modal p{
+#delete-task-modal p{
     margin-bottom: 0;
     margin-top: 0px;
 }
 
-#delete-board-modal .ar-u-sr{
+#delete-task-modal .ar-u-sr{
     margin-bottom: 20px;
 }
 
-#delete-board-modal .delete-btns{
+#delete-task-modal .delete-btns{
    width: 300px;
    display: flex;
    justify-content: space-between;
 }
 
-#delete-board-modal .delete-btns button:last-child {
+#delete-task-modal .delete-btns button:last-child {
     background-color:red ;
     color: var(--white);
 }
 
-/* board-deleted */
+/* task-deleted */
 
-.board-deleted {
+.task-deleted {
     width: 220px;
     font-weight: 500;
 }
 
-.board-deleted button {
+.task-deleted button {
     position: absolute;
     right: 20px;
     top: 10px;
@@ -52,19 +52,19 @@
 
 }
 
-.board-deleted button svg {
+.task-deleted button svg {
     width: 27px !important;
     height: 27px;
 }
 
-.board-deleted button:hover svg {
+.task-deleted button:hover svg {
     color: var(--logoColor);
 }
 
 /* media queries */
 
 @media screen and (max-width: 450px) {
-    #delete-board-modal .delete-btns {
+    #delete-task-modal .delete-btns {
         width: 100%;
         font-weight: 500;
     }

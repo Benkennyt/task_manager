@@ -1,38 +1,35 @@
-import { boardID1 } from './../models/board';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "./agent";
 
 
-export const getTasks = createAsyncThunk<any, any>('getTasks', async (value, _thunkAPI) => {
-  try {
-   return await api.get(`api/tasks/${value.boardID}/`)
-  } catch (error: any) {
-     console.log(error)
-  }
+export const getTasks = createAsyncThunk<any, any>('getTasks', async (values, _thunkAPI) => {
+   return await api.get(`api/board/tasks/${values}/`)
 })
 
-export const deleteTask = createAsyncThunk<any, string>('deleteTask', async (id, _thunkAPI) => {
-    try {
-     return await api.delete(`api/tasks/delete/${id}/`)
-    } catch (error: any) {
-       console.log(error)
-    }
+export const getTask1 = createAsyncThunk<any, any>('getTask1', async (values, _thunkAPI) => {
+   return await api.get(`api/task/${values}/`)
 })
 
-export const createTask = createAsyncThunk<any, any>('createTask', async (value, _thunkAPI) => {
-    try {
-     return await api.post(`api/tasks/${value.boardID}/`, {name: value.name, description: value.description, status: value.status})
-    } catch (error: any) {
-       console.log(error)
-    }
+export const deleteTask = createAsyncThunk<any, any>('deleteTask', async (values, _thunkAPI) => {
+  return await api.delete(`api/board/${values.boardID}/tasks/delete/${values.taskID}/`)
 })
 
-export const updateTask = createAsyncThunk<any, any>('updateTask', async (value, _thunkAPI) => {
-  try {
-   return await api.put(`api/tasks/edit/${value.id}/`, {name: value.name})
-  } catch (error: any) {
-     console.log(error)
-  }
+export const createTask = createAsyncThunk<any, any>('createTask', async (values, _thunkAPI) => {
+     const res = await api.post(`api/board/tasks/${values.boardID}/`, {name: values.name, description: values.description, status: values.status})
+     if (res.status === 201) {
+      const list = values.subtaskList
+      for (let i = 0; i < list.length; i++) {
+        await api.post(`api/board/task/subtasks/${res.data.id}/`, {name: list[i].subtask, status:values.status2})
+      }
+      console.log(values.subtaskList)
+     }
+     return res
+
+})
+
+export const updateTask = createAsyncThunk<any, any>('updateTask', async (values, _thunkAPI) => {
+   return await api.put(`api/board/${values.boardID}/tasks/edit/${values.taskID}/`, { name: values.name, description: values.description, status: values.status})
+
 })
 
 
@@ -41,19 +38,22 @@ const taskSlice = createSlice({
   name: "tasks",
   initialState: {
    isLoading: {
-    isGetTaskLoading: false,
+    isGetTaskLoading1: false,
+    isGetTasksLoading: false,
     isCreateTaskLoading: false,
     isDeleteTaskLoading:false,
-    isUpdateTaskLoading:false
+    isUpdateTaskLoading:false,
    },
    isError: { 
-    isGetTaskError: false,
+    isGetTaskError1: false,
+    isGetTasksError: false,
     isCreateTaskError: false,
     isDeleteTaskError: false,
     isUpdateTaskError: false,
   },
    data: {
-    taskData:{},
+    tasksData:{},
+    taskData1:{},
     createTaskData:{},
     deleteTaskData:{},
     updateTaskData:{},
@@ -63,16 +63,29 @@ const taskSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // getTasks
+    builder.addCase(getTask1.pending, (state) => {
+      state.isLoading.isGetTaskLoading1 = true;
+  });
+    builder.addCase(getTask1.fulfilled, (state, action) => {
+        state.isLoading.isGetTaskLoading1 =false;
+        state.data.taskData1 = action.payload
+    });
+    builder.addCase(getTask1.rejected, (state) => {
+      state.isLoading.isGetTaskLoading1 = false;
+      state.isError.isGetTaskError1 = true
+    });
+
+    // getTasks
     builder.addCase(getTasks.pending, (state) => {
-        state.isLoading.isGetTaskLoading = true;
+        state.isLoading.isGetTasksLoading = true;
     });
   builder.addCase(getTasks.fulfilled, (state, action) => {
-      state.isLoading.isGetTaskLoading =false;
-      state.data.taskData = action.payload
+      state.isLoading.isGetTasksLoading =false;
+      state.data.tasksData = action.payload
   });
   builder.addCase(getTasks.rejected, (state) => {
-    state.isLoading.isGetTaskLoading = false;
-    state.isError.isGetTaskError = true
+    state.isLoading.isGetTasksLoading = false;
+    state.isError.isGetTasksError = true
   });
 
   // createTask
@@ -106,7 +119,7 @@ const taskSlice = createSlice({
     state.isLoading.isUpdateTaskLoading = true;
   });
   builder.addCase(updateTask.fulfilled, (state, action) => {
-    state.isLoading.isDeleteTaskLoading =false;
+    state.isLoading.isUpdateTaskLoading =false;
     state.data.updateTaskData = action.payload
   });
   builder.addCase(updateTask.rejected, (state) => {

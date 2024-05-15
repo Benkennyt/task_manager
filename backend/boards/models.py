@@ -23,10 +23,10 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=60)
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name="tasks")
+    
 
     def __str__(self):
         return self.name
-
 
 class SubTask(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -34,6 +34,5 @@ class SubTask(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="subtasks")
-
     def __str__(self):
         return self.name
