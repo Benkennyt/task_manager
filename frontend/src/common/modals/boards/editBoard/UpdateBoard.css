@@ -1,0 +1,43 @@
+#update-board-modal {
+    height: fit-content;
+}
+
+#update-board-modal .board-hd-closebtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#update-board-modal .pp {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+}
+
+#update-board-modal input {
+    width: calc(100% - 12px);
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: Inter;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white);
+    outline-color: var(--logoColor);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+#update-board-modal input::placeholder,
+#update-board-modal input::-webkit-input-placeholder {
+    color: var(--textGrey);
+    font-family: Inter;
+}
+
+#update-board-modal input[type='text'] {
+    font-family: Inter;
+    padding-left: 10px;
+}

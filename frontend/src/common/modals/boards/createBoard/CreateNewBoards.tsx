@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 
 const CreateNewBoards = (props: any) => {
     const [modalReset, setModalReset] = useState(false)
-    const { modal, handleModals, setActiveBoard } = props
+    const { modal, handleModals} = props
     const [inputField, setInputField] = useState(new BoardForm());
     const { data, isError, isLoading } = useSelector((state: any) => state.boards)
     const dispatch = useAppDispatch()
@@ -23,15 +23,18 @@ const CreateNewBoards = (props: any) => {
     const handleCreateBoard = (val: any) => {
         dispatch(createBoard(val))
         setModalReset(true)
+        setTimeout(() => {
+            dispatch(getBoards())
+        }, 100)
+
     }
 
     const handleCreateBoardCloseBtn2 = () => {
         handleModals("newBoard")
         setModalReset(false)
-        dispatch(getBoards())
     }
 
-
+    
     return (
         <ReactModal
             isOpen={modal == 'newBoard'}
@@ -49,7 +52,8 @@ const CreateNewBoards = (props: any) => {
                             <CloseIcon />
                         </div>
                         <img src={SuccessIcon} alt="success Icon" />
-                        <h3>New Board Created</h3>
+                        <h3>SUCCESS!</h3>
+                        <p>New board created successfully.</p>
                     </div>
                     : isError.isCreateBoardError ? <div className="err-mdal">
                         <div className="err-hd-closebtn">
@@ -58,6 +62,7 @@ const CreateNewBoards = (props: any) => {
                             </div>
                         </div>
                         <img src={errIcon} alt="error icon" />
+                        <h3>ERROR!</h3>
                         <p>An error occured while trying to creating board.</p>
                     </div>
                         :
@@ -100,67 +105,53 @@ const CreateNewBoards = (props: any) => {
 
                                             <div className="todo column">
                                                 <p>ToDo</p>
-                                                <div className="checkbox">
+                                                <div className="checkbox-wrapper">
                                                     <Field
                                                         name="checked"
                                                         type={'checkbox'}
                                                         value={"todo_column"}
-                                                        id='check'
+                                                        id={`cbtest-19-4`} 
                                                     />
-
-                                                    <svg viewBox="0 0 35.6 35.6">
-                                                        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-                                                        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-                                                        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-                                                    </svg>
+                                                        <label htmlFor={`cbtest-19-4`} className="check-box"></label>
 
                                                 </div>
                                             </div>
 
                                             <div className="overdue column">
                                                 <p>Overdue</p>
-                                                <div className="checkbox">
+                                                <div className="checkbox-wrapper">
                                                     <Field
                                                         name="checked"
                                                         type={'checkbox'}
                                                         value={"overdue_column"}
-
+                                                        id={`cbtest-19-2`} 
                                                     />
-                                                    <svg viewBox="0 0 35.6 35.6">
-                                                        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-                                                        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-                                                        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-                                                    </svg>
+                                                    <label htmlFor={`cbtest-19-2`} className="check-box"></label>
                                                 </div>
 
                                             </div>
 
                                             <div className="inprogress column">
                                                 <p>Inprogress</p>
-                                                <div className="checkbox">
+                                                <div className="checkbox-wrapper">
                                                     <Field
                                                         name="checked"
                                                         type={'checkbox'}
-                                                        value={"inprogress_column"} />
-                                                    <svg viewBox="0 0 35.6 35.6">
-                                                        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-                                                        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-                                                        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-                                                    </svg>
+                                                        value={"inprogress_column"} 
+                                                        id={`cbtest-19-3`} 
+                                                    />
+                                                    <label htmlFor={`cbtest-19-3`} className="check-box"></label>
                                                 </div>
                                             </div>
                                             <div className="completed column">
                                                 <p>Completed</p>
-                                                <div className="checkbox">
+                                                <div className="checkbox-wrapper">
                                                     <Field
                                                         name="checked"
                                                         type={'checkbox'}
-                                                        value={"completed_column"} />
-                                                    <svg viewBox="0 0 35.6 35.6">
-                                                        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-                                                        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-                                                        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-                                                    </svg>
+                                                        value={"completed_column"}
+                                                        id={`cbtest-19-4`} />
+                                                    <label htmlFor={`cbtest-19-4`} className="check-box"></label>
                                                 </div>
                                             </div>
                                         </div>

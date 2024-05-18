@@ -77,4 +77,7 @@ export class InitialValues1 implements InitialValues {
     status2: string = '';
 }
 
+export interface InitialValues2 {
+    name: string;
+}
 

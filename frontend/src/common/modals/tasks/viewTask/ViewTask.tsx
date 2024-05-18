@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './ViewTask.css'
 import ReactModal from 'react-modal';
 import { Form } from 'react-router-dom';
-import { CloseIcon, EditPen, ErrorIcon } from '../../../../assets/svg/SVG';
+import { CloseIcon, EditPen} from '../../../../assets/svg/SVG';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../app/stores/stores';
 import { getTask1, getTasks, updateTask } from '../../../../app/api/taskSlice';
@@ -13,12 +13,13 @@ import errIcon from "../../../../assets/svg/errIcon.svg";
 import { updateSubtask } from '../../../../app/api/subtaskSlice';
 
 const ViewTask = (props: any) => {
-    const { modal, handleModals, taskID, setTaskUpdated, taskUpdated, boardID } = props;
+    const { modal, handleModals, taskID, boardID, activeBoard } = props;
     const [editTitle, setEditTitle] = useState(false)
     const [modalReset, setModalReset] = useState(false)
 
     const [editDescription, setEditDescription] = useState(false)
     const { data, isError, isLoading } = useSelector((state: any) => state.tasks)
+    const { data: data1 } = useSelector((state: any) => state.boards)
     const dispatch = useAppDispatch();
     const taskData = data.taskData1.data?.[0] || ''
 
@@ -26,7 +27,7 @@ const ViewTask = (props: any) => {
         if (taskID != null) {
             dispatch(getTask1(taskID))
         }
-    }, [taskID, taskUpdated])
+    }, [taskID])
 
     const handleCheckboxChange = (event: { target: { checked: any; }; }, subtask: any) => {
         const isChecked = event.target.checked;
@@ -48,21 +49,17 @@ const ViewTask = (props: any) => {
         } else {
             dispatch(updateSubtask(unChecked))
         }
+        setTimeout(() => {
+            dispatch(getTasks(boardID))
+        }, 100)
     };
 
     const handleTaskUpdate = (values: any) => {
         dispatch(updateTask(values))
         setModalReset(false)
-    }
-
-    const handleTaskUpdateBtn = () => {
-        setEditTitle(false)
-        setEditDescription(false)
-        if (taskUpdated) {
-            setTaskUpdated(false)
-        } else {
-            setTaskUpdated(true)
-        }
+        setTimeout(() => {
+            dispatch(getTasks(boardID))
+        }, 100)
     }
 
     const handleTaskViewCloseBtn = () => {
@@ -70,11 +67,6 @@ const ViewTask = (props: any) => {
         setEditTitle(false)
         setEditDescription(false)
         setModalReset(true)
-        if (taskUpdated) {
-            setTaskUpdated(false)
-        } else {
-            setTaskUpdated(true)
-        }
     }
 
     return (
@@ -95,7 +87,8 @@ const ViewTask = (props: any) => {
                             <CloseIcon />
                         </div>
                         <img src={SuccessIcon} alt="success Icon" />
-                        <h3>New Board Created</h3>
+                        <h3>SUCCESS!</h3>
+                        <p>Task updated successfully.</p>
                     </div>
                     : isError.isUpdateTaskError && !modalReset ?
 
@@ -107,6 +100,7 @@ const ViewTask = (props: any) => {
                                 </div>
                             </div>
                             <img src={errIcon} alt="error icon" />
+                            <h3>ERROR!</h3>
                             <p>An error occured while trying to update task.</p>
                         </div>
 
@@ -124,7 +118,7 @@ const ViewTask = (props: any) => {
                                     handleTaskUpdate(value);
                                 }}
                             >
-                                {({ handleSubmit, handleBlur, handleChange, values, touched, isValid, dirty, isSubmitting
+                                {({ handleSubmit, handleBlur, handleChange, values, touched, dirty, isSubmitting
                                 }) => (
                                     <Form onSubmit={handleSubmit} autoComplete='off'>
                                         <label className='pp'>Task Name</label>
@@ -145,7 +139,8 @@ const ViewTask = (props: any) => {
                                         <label className='pp'>Description</label>
                                         {editDescription ? <Field
                                             name="description"
-                                            type="textarea"
+                                            type="text"
+                                            as='textarea'
                                             onBlur={handleBlur}
                                             onChange={handleChange}
                                             value={values.description}
@@ -169,10 +164,14 @@ const ViewTask = (props: any) => {
                                             value={values.status}
                                         >
                                             <option value="" disabled className='go'>select status</option>
-                                            <option value="TODO">TODO</option>
-                                            <option value="OVERDUE">OVERDUE</option>
-                                            <option value="INPROGRESS">INPROGRESS</option>
-                                            <option value="COMPLETED">COMPLETED</option>
+                                            {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].todo_column &&
+                                                <option value="TODO">TODO</option>}
+                                            {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].overdue_column &&
+                                                <option value="OVERDUE">OVERDUE</option>}
+                                            {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].inprogress_column &&
+                                                <option value="INPROGRESS">INPROGRESS</option>}
+                                            {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].completed_column &&
+                                                <option value="COMPLETED">COMPLETED</option>}
                                         </Field>
 
                                         <>
@@ -200,7 +199,7 @@ const ViewTask = (props: any) => {
 
                                         {isLoading?.isUpdateTaskLoading ? <button className="update_task" type="submit">
                                             <i className="fa fa-spinner fa-spin"></i>Loading...
-                                        </button> : dirty ? <button disabled={isSubmitting} onClick={() => handleTaskUpdateBtn()} className="update_task" type="submit">
+                                        </button> : dirty ? <button disabled={isSubmitting} className="update_task" type="submit">
                                             Update Task
                                         </button> : null}
                                     </Form>

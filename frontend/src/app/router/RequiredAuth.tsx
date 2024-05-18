@@ -11,6 +11,7 @@ const RequiredAuth = () => {
         auth().catch(() => setIsAuthorized('false'))
     }, [])
 
+
     const refreshToken = async () => {
         const refreshToken1 = localStorage.getItem(REFRESH_TOKEN);
         try {
@@ -19,10 +20,12 @@ const RequiredAuth = () => {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
                 setIsAuthorized('true')
             } else {
+                localStorage.clear()
                 setIsAuthorized('false')
             }
         } catch (error) {
             setIsAuthorized('false');
+            localStorage.clear()
         }
     };
 
@@ -42,11 +45,9 @@ const RequiredAuth = () => {
         }
     };
 
-    if (isAuthorized === 'null') {
-        return <div>Loading...</div>;
-    }
+
   return (
-    isAuthorized === 'true' ? <Outlet/> : <Navigate to='login' />
+    isAuthorized === 'true' ? <Outlet/> : isAuthorized === 'false' ? <Navigate to='sign-in'/> : <div>Loading...</div>
   )
 }
 

@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import {  useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/stores/stores";
 import { register } from "../../../app/api/userSlice";
+import { ACCESS_TOKEN } from "../../../constants";
 
 const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
@@ -21,10 +22,14 @@ const RegistrationForm = () => {
   const bankendErrorEmail = registerErrorData &&  registerErrorData?.email && registerErrorData?.email[0]
 
   useEffect(() => {
-    if (registerData?.status === 201) {
+    const token = localStorage.getItem(ACCESS_TOKEN)
+    if (registerData?.status === 201 && !token) {
       navigate('/sign-in')
+    } else{
+      navigate('home')
     }
-  }, [registerData])
+  }, [])
+
 
     const handlePasswordShowHide = () => {
     if (showPassword) {

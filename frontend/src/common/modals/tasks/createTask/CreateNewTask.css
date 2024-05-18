@@ -18,13 +18,6 @@
     margin-bottom: 20px;
 }
 
-#newTaskModal .task-hd-closebtn-2 {
-  display: flex;
-  width: 100%;
-  justify-content: right; 
-  cursor: pointer;
-}
-
 
 
 .task-hd-closebtn .close-task-modal {
@@ -33,25 +26,8 @@
     cursor: pointer;
 }
 
-.task-hd-closebtn .close-task-modal:hover, .task-hd-closebtn-2:hover {
+.task-hd-closebtn .close-task-modal:hover {
     color: var(--logoColor);
-}
-
-.create-task-err .close-task-modal-create {
-  background-color: red;
-  display: flex;
-  right: 0;
-}
-
-.create-task-err {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.create-task-err img {
-  width: 100px;
 }
 
 #newTaskModal .new_task_form {
@@ -128,14 +104,6 @@
 }
 
 /* select box */
-
-
-
-/* .new_task_form select option {
-  background-color: var(--white);
-  padding: 30px;
-  
-} */
 
 .new_task_form select {  
   background-color:var(--white);

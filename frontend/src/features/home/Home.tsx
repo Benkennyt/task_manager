@@ -2,7 +2,7 @@ import Sidebar from "./sidebar/Sidebar";
 import './Home.css';
 import ProfileImage from '../../assets/images/profile-image.jpg'
 import { useEffect, useState } from "react";
-import { CloseIcon, EditPen, HamburgerIcon, TrashIcon } from "../../assets/svg/SVG";
+import { CloseIcon, HamburgerIcon, SettingsIcon2, SignOutIcon, ThreeDots, TrashIcon } from "../../assets/svg/SVG";
 import CreateNewBoards from "../../common/modals/boards/createBoard/CreateNewBoards";
 import DeleteBoard from "../../common/modals/boards/deleteBoard/DeleteBoard";
 import { useSelector } from "react-redux";
@@ -10,9 +10,10 @@ import { USER_DETAILS } from "../../constants";
 import UpdateBoard from "../../common/modals/boards/editBoard/UpdateBoard";
 import CreateNewTask from "../../common/modals/tasks/createTask/CreateNewTask";
 import { useAppDispatch } from "../../app/stores/stores";
-import { getTask1, getTasks } from "../../app/api/taskSlice";
+import {getTasks } from "../../app/api/taskSlice";
 import ViewTask from "../../common/modals/tasks/viewTask/ViewTask";
 import DeleteTask from "../../common/modals/tasks/deleteTask/DeleteTask";
+import Loading from "../../common/loading/Loading";
 
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false)
@@ -22,19 +23,20 @@ const Home = () => {
   const [boardIndex, setBoardIndex] = useState(null);
   const [taskID, setTaskID] = useState(null);
   const [activeBoard, setActiveBoard] = useState(0)
-  const [taskUpdated, setTaskUpdated] = useState(false);
   const { data } = useSelector((state: any) => state.boards)
   const { data: data1 } = useSelector((state: any) => state.tasks)
   useSelector((state: any) => state.subtasks)
   const dispatch = useAppDispatch();
 
+
   const getUserDetails = localStorage.getItem(USER_DETAILS) || ''
   const userDetails = JSON.parse(getUserDetails)
+
   useEffect(() => {
     if (boardID != '') {
       dispatch(getTasks(boardID))
     }
-  }, [boardID, taskUpdated])
+  }, [boardID])
   const handleToggle = () => {
     if (toggleSideBar) {
       setToggleSideBar(false)
@@ -72,7 +74,7 @@ const Home = () => {
   }
 
   
-  console.log(boardIndex)
+ 
 
 
   const handleSubtasks = (task: any) => {
@@ -85,13 +87,13 @@ const Home = () => {
 
   return (
     <div className="home-cont">
-      <Sidebar toggleSideBar={toggleSideBar} handleModals={handleModals} setBoardID={setBoardID} setBoardID2={setBoardID2} boardIndex={boardIndex} setBoardIndex={setBoardIndex} activeBoard={activeBoard} setActiveBoard={setActiveBoard} setToggleSideBar={setToggleSideBar} />
-      <CreateNewBoards handleModals={handleModals} modal={modal} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>
+      <Sidebar toggleSideBar={toggleSideBar} handleModals={handleModals} setBoardID={setBoardID} setBoardID2={setBoardID2} setBoardIndex={setBoardIndex} activeBoard={activeBoard} setActiveBoard={setActiveBoard} setToggleSideBar={setToggleSideBar} />
+      <CreateNewBoards handleModals={handleModals} modal={modal} activeBoard={activeBoard} setActiveBoard={setActiveBoard} boardID={boardID}  setBoardID={setBoardID}/>
       <DeleteBoard handleModals={handleModals} modal={modal} boardID2={boardID2} setActiveBoard={setActiveBoard} />
       <UpdateBoard handleModals={handleModals} modal={modal} boardID2={boardID2} boardIndex={boardIndex} />
-      <CreateNewTask handleModals={handleModals} modal={modal} boardID={boardID} setTaskUpdated={setTaskUpdated} taskUpdated={taskUpdated}  />
-      <ViewTask handleModals={handleModals} modal={modal} taskID={taskID} setTaskUpdated={setTaskUpdated} taskUpdated={taskUpdated} boardID={boardID}/>
-      <DeleteTask handleModals={handleModals} modal={modal} taskID={taskID} boardID={boardID} taskUpdated={taskUpdated} setTaskUpdated={setTaskUpdated}/>
+      <CreateNewTask handleModals={handleModals} modal={modal} boardID={boardID} activeBoard={activeBoard}  />
+      <ViewTask handleModals={handleModals} modal={modal} taskID={taskID} boardID={boardID} activeBoard={activeBoard}/>
+      <DeleteTask handleModals={handleModals} modal={modal} taskID={taskID} boardID={boardID}/>
       <div className="home-cont-2">
         <div className="board-cont">
           <div className="board-cont-header">

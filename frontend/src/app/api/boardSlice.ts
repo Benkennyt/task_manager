@@ -18,17 +18,19 @@ export const deleteBoard = createAsyncThunk<any, string>('deleteBoard', async (i
     }
 })
 
-export const createBoard = createAsyncThunk<any, any>('createBoard', async (value, _thunkAPI) => {
+export const createBoard = createAsyncThunk<any, any>('createBoard', async (values, _thunkAPI) => {
     try {
-     return await api.post("api/boards/", value)
+     return await api.post("api/boards/", values)
     } catch (error: any) {
        console.log(error)
     }
 })
 
-export const updateBoard = createAsyncThunk<any, any>('updateBoard', async (value, _thunkAPI) => {
+export const updateBoard = createAsyncThunk<any, any>('updateBoard', async (values, _thunkAPI) => {
   try {
-   return await api.put(`api/boards/edit/${value.id}/`, {name: value.name})
+    
+   return await api.put(`api/boards/edit/${values.id}/`, values)
+  // console.log({...values.columns.columnsObj})
   } catch (error: any) {
      console.log(error)
   }
@@ -105,7 +107,7 @@ const boardSlice = createSlice({
     state.isLoading.isUpdateBoardLoading = true;
   });
   builder.addCase(updateBoard.fulfilled, (state, action) => {
-    state.isLoading.isDeleteBoardLoading =false;
+    state.isLoading.isUpdateBoardLoading =false;
     state.data.updateBoardData = action.payload
   });
   builder.addCase(updateBoard.rejected, (state) => {

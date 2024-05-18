@@ -52,6 +52,11 @@ button:hover {
   transform: translateY(-2px);
 }
 
+.trash svg{
+  width: 100px;
+}
+
+
 /* error modal */
 .err-mdal {
   display: flex;
@@ -62,8 +67,22 @@ button:hover {
 }
 
 .err-mdal img {
-  width: 100px;
+  width: 100px !important;
   margin-bottom: 20px;
+}
+
+.err-mdal h3 {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 25px;
+}
+
+.err-mdal p {
+  margin-top: 10px !important;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
 }
 
 .err-hd-closebtn {
@@ -81,16 +100,20 @@ button:hover {
   color: var(--logoColor);
 }
 
+
+
 /* successful-201 */
 
 .successful-201 {
   display: grid;
   place-items: center;
   line-height: .6;
+  width: 100%;
 }
 
 .successful-201 svg{
   cursor: pointer;
+  width: 25px;
   
 }
 
@@ -99,15 +122,22 @@ button:hover {
 }
 
 .successful-201 img {
-    width: 100px ;
-    height: 100px;
-
+  width: 100px ;
+  height: 100px;
 }
 
 .successful-201 h3 {
+  margin-top: 20px !important;
+  margin-bottom: 0px !important;
   font-size: 25px;
-  margin-top: 50px;
-  font-weight: 500;
+}
+
+.successful-201 p {
+  margin-top: 20px !important;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
 }
 
 .close-successful-modal {

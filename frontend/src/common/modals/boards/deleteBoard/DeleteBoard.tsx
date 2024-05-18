@@ -9,7 +9,7 @@ import SuccessIcon from "../../../../assets/svg/success_icon.svg";
 import errIcon from "../../../../assets/svg/errIcon.svg";
 
 const DeleteBoard = (props: any) => {
-  const { modal, handleModals, boardID2, setActiveBoard } = props
+  const { modal, handleModals, boardID2 } = props
   const [boardDeleted, setBoardDeleted] = useState(false)
   const [modalReset, setModalReset] = useState(false)
   const { data, isError, isLoading } = useSelector((state: any) => state.boards)
@@ -18,7 +18,15 @@ const DeleteBoard = (props: any) => {
 
   const handleDeleteBoard = () => {
     dispatch(deleteBoard(boardID2))
+    setTimeout(() => {
+      dispatch(getBoards())
+    }, 100)
+  }
 
+  const handleBoardDeleteCloseBtn = () => {
+    handleModals("deleteBoard")
+    setBoardDeleted(false)
+    setModalReset(false)
   }
 
   useEffect(() => {
@@ -39,28 +47,31 @@ const DeleteBoard = (props: any) => {
       ariaHideApp={false}
       id='delete-board-modal'
     >
-      {boardDeleted ?
-
+      {!modalReset && boardDeleted ?
         <div className="successful-201">
-          <div onClick={() => { handleModals("deleteBoard"), dispatch(getBoards()), setBoardDeleted(false), setModalReset(true) }} className="close-successful-modal">
+          <div onClick={() => handleBoardDeleteCloseBtn()} className="close-successful-modal">
             <CloseIcon />
           </div>
           <img src={SuccessIcon} alt="success Icon" />
-          <h3>Board deleted</h3>
+          <h3>SUCCESS!</h3>
+          <p>Board deleted successfully.</p>
         </div>
 
         :
-        isError.isDeleteBoardError ? <div className="err-mdal">
+        !modalReset && isError.isDeleteBoardError ? <div className="err-mdal">
           <div className="err-hd-closebtn">
-            <div onClick={() => { handleModals("deleteBoard"), dispatch(getBoards()), setBoardDeleted(false) }} className="close-err-modal">
+            <div onClick={() => handleBoardDeleteCloseBtn()} className="close-err-modal">
               <CloseIcon />
             </div>
           </div>
           <img src={errIcon} alt="error icon" />
+          <h3>ERROR!</h3>
           <p>An error occured while trying to delete board.</p>
         </div> :
           <>
-            <TrashIcon />
+            <div className='trash'>
+              <TrashIcon />
+            </div>
             <h3>You are about to delete a board</h3>
             <p>This will delete your board permanently</p>
             <p className='ar-u-sr'>Are you sure?</p>

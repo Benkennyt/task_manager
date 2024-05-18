@@ -10,6 +10,7 @@ import { LoginForm1 } from "../../../app/models/user";
 import { useAppDispatch } from "../../../app/stores/stores";
 import { login } from "../../../app/api/userSlice";
 import { useSelector } from "react-redux";
+import { ACCESS_TOKEN } from "../../../constants";
 
 
 const LoginForm = () => {
@@ -20,8 +21,9 @@ const LoginForm = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (loginData?.username) {
-      navigate('/home')
+    const token = localStorage.getItem(ACCESS_TOKEN)
+    if (token) {
+      navigate('home')
     }
   }, [loginData])
    

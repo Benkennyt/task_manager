@@ -14,6 +14,10 @@
 
 #task-view .pp{
     margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+
 }
 
 .task-title-edit {
@@ -53,9 +57,11 @@
     font-family: Inter;
     padding: 10px 30px 10px 10px;
     margin-bottom: 20px;
+    margin-top: 10px;
     outline: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     text-indent: 5px;
+    width: 100%;
     cursor: pointer;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -90,6 +96,41 @@
     margin-top: 10px;
 }
 
+#task-view  input, #task-view textarea {
+  width: calc(100% - 12px);
+  height: 40px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-family: Inter;
+  border-radius: 6px;
+  border: rgb(195, 194, 194) solid 1px;
+  outline-offset: 4px;
+  background-color: var(--white);
+  outline-color: var(--logoColor);
+  outline-width: 2px;
+  color: var(--black);
+}
+
+#task-view textarea {
+  height: 100px !important;
+  min-width: 97%;
+  max-width: 400px;
+  resize: none;
+  padding: 10px;
+  font-family: Inter;
+  outline: none;
+}
+
+#task-view input::placeholder, #newTaskModal input::-webkit-input-placeholder{
+  color: var(--textGrey);
+  font-family: Inter;
+}
+
+#task-view input[type = 'text']{
+  font-family: Inter;
+  padding-left: 10px;
+}
 
 
   .checkbox-wrapper {
@@ -253,6 +294,7 @@
   background-color: var(--logoColor);
   color: var(--white);
   margin-top: 20px;
+  width: 100%;
 }
 
 .update_task:disabled {

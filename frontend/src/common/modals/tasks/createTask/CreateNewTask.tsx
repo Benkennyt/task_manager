@@ -15,21 +15,20 @@ import errIcon from "../../../../assets/svg/errIcon.svg";
 
 
 const CreateNewTask = (props: any) => {
-  const { modal, handleModals, boardID, setTaskUpdated, taskUpdated } = props;
+  const { modal, handleModals, boardID, activeBoard } = props;
   const [modalReset, setModalReset] = useState(false)
   const [inputField, setInputField] = useState(new InitialValues1());
   const { data, isError, isLoading } = useSelector((state: any) => state.tasks)
+  const { data:data1 } = useSelector((state: any) => state.boards)
   const [subtaskList, setSubtaskList] = useState<Subtask[]>([])
   const dispatch = useAppDispatch()
 
   const handleCreateTask = (val: any) => {
     dispatch(createTask(val))
     setModalReset(false)
-    if (taskUpdated) {
-      setTaskUpdated(false)
-    } else {
-      setTaskUpdated(true)
-    }
+    setTimeout(() => {
+      dispatch(getTasks(boardID))
+    }, 100)
   }
 
   const handleSubtaskAdd = () => {
@@ -55,9 +54,6 @@ const CreateNewTask = (props: any) => {
     setInputField({ ...inputField, [e.target.name]: e.target.value })
   }
 
-  //   interface IInputField {
-  //     [key: string]: string
-  // }
 
   const handleFormReset = () => {
     setInputField(new InitialValues1);
@@ -85,7 +81,8 @@ const CreateNewTask = (props: any) => {
               <CloseIcon />
             </div>
             <img src={SuccessIcon} alt="success Icon" />
-            <h3>New Task Created</h3>
+            <h3>SUCCESS!</h3>
+            <p>New task created successfully.</p>
           </div>
           : isError.isCreateTaskError && !modalReset ?
 
@@ -96,6 +93,7 @@ const CreateNewTask = (props: any) => {
                 </div>
               </div>
               <img src={errIcon} alt="error icon" />
+              <h3>ERROR!</h3>
               <p>An error occured while trying to create task.</p>
             </div>
             :
@@ -114,7 +112,6 @@ const CreateNewTask = (props: any) => {
                 enableReinitialize
                 onSubmit={(values) => {
                   handleCreateTask(values);
-                  dispatch(getTasks(boardID))
                 }}
 
               >
@@ -154,10 +151,14 @@ const CreateNewTask = (props: any) => {
                       value={values.status}
                     >
                       <option value="" disabled className='go'>select status</option>
-                      <option value="TODO">TODO</option>
-                      <option value="OVERDUE">OVERDUE</option>
-                      <option value="INPROGRESS">INPROGRESS</option>
-                      <option value="COMPLETED">COMPLETED</option>
+                      {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].todo_column &&
+                      <option value="TODO">TODO</option>}
+                      {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].overdue_column &&
+                      <option value="OVERDUE">OVERDUE</option>}
+                      {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].inprogress_column &&
+                      <option value="INPROGRESS">INPROGRESS</option>}
+                      {data1 && data1.boardData && data1.boardData.data && data1.boardData.data[activeBoard] && data1.boardData.data[activeBoard].completed_column &&
+                      <option value="COMPLETED">COMPLETED</option>}
                     </Field>
 
                     <div className="add-subtask-hd">
