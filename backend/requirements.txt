@@ -9,3 +9,4 @@ whitenoise
 django-uuidfield==0.5.0
 python-dotenv
 djangorestframework==3.15.1
+psycopg2==2.9.9
