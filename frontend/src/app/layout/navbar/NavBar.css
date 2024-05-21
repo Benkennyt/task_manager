@@ -24,18 +24,70 @@ nav ul li a{
     text-decoration: none;
 }
 
+.logo-3 {
+    display: none;
+}
+
 nav .signbtn {
     width: 300px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content:center;
     padding-right: 50px;
 }
 
 nav .sign-in-btn {
     background-color: transparent;
+    box-shadow: none;
+}
+
+nav .sign-in-btn:hover {
+    color: var(--logoColor);
 }
 
 nav .sign-up-btn {
     color: var(--logoColor);
+}
+
+
+/* media queries */
+
+@media screen and (max-width: 1043px) {
+    nav ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    nav{
+        justify-content: space-between;
+    }
+
+    nav .logo {
+        padding-left: 10px !important;
+    }
+
+    nav .signbtn {
+        width: fit-content !important;
+        display: flex;
+        justify-content:right !important ;
+        padding-right: 50px;
+    }
+    .sign-up-btn {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 666px) {
+
+   nav .logo {
+       display: none;
+    }
+    
+
+   nav .logo-2 {
+        display: flex;
+        font-weight: 600;
+        width: 60px;
+        height: 60px;
+    }
 }

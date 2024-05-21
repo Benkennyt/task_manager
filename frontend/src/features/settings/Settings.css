@@ -1,0 +1,146 @@
+.home-nav {
+    background-color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.home-nav label {
+    cursor: pointer;
+}
+
+.home-nav .logo{
+    padding-left: 20px;
+    padding-right: 0;
+}
+
+.home-nav .logo-2 {
+    background-color: var(--logoColor);
+    color: var(--white);
+}
+
+.home-nav li:hover a {
+    color: var(--logoColor) !important;
+}
+
+.setting-cont-2 {
+    background-color: var(--backgroundColor);
+    padding: 30px;
+    padding-top: 0;
+}
+
+
+.settings-container-2 header {
+    margin-bottom: 30px;
+}
+
+
+.settings-container-2 header h1 {
+    margin: 0;
+
+}
+
+.settings-container-2 header p {
+    margin: 0;
+}
+
+.settings-container-1 {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 20px;
+}
+
+.side-nav {
+    width: 300px;
+    border-right: solid 1px var(--borderGrey);
+}
+
+.side-nav li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Inter;
+    font-weight: 500;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.side-nav li:hover {
+    color: var(--logoColor);
+}
+
+.side-nav li svg {
+    width: 24px;
+}
+
+.side-nav li:hover svg {
+    fill: var(--logoColor);
+}
+
+.side-nav .active {
+    color: var(--logoColor);
+}
+
+.side-nav .active svg {
+    fill: var(--logoColor);
+}
+
+.main-disp {
+    width: calc(100% - 330px);
+}
+
+/* media queries */
+@media screen and (max-width: 731px) {
+
+    .settings-container-1 {
+        display: grid;
+    }
+    .side-nav{
+        width: 100%;
+        border-right: none;
+        border-bottom: solid 1px var(--borderGrey) ;
+        height: 50px;
+    }
+
+    .side-nav ul {
+        display: flex;
+        justify-content: space-around;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .side-nav ul li {
+        padding-left: 10px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .side-nav ul li:first-child {
+        border-right: solid 1px var(--borderGrey);
+    }
+    
+    .main-disp {
+        width: 100%;
+    }
+
+    .account-settings-container {
+        padding: 0 !important;
+    }
+
+    .personal-info-h4,.name,.edit-personal-info {
+        margin-left: 30px;
+    }
+
+   
+    
+    .close-my-account h4, .close-my-account h5, .close-my-account ul,.close-my-account button  {
+        margin-left: 30px;
+    }
+    .close-my-account button {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+}

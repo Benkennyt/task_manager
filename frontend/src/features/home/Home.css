@@ -5,6 +5,7 @@
 
 .home-cont-2 {
     width: calc(100% - 300px);
+    max-width: 1700px;
 }
 
 
@@ -29,6 +30,15 @@
     margin-right: 20px;
     gap: 20px;
     min-width: 10px;
+}
+
+.add-new-task button:disabled {
+    opacity: .5;
+}
+
+.add-new-task button:disabled:hover {
+    box-shadow: unset;
+
 }
 
 .add-new-task h2{
@@ -64,7 +74,8 @@
     height: 45px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .board-cont-header-2 .profile .nav-btn {
@@ -200,8 +211,11 @@
 
 @media screen and  (max-width : 975px){
     .home-cont-2 {
-        width: 100%;
+        width: 100vw;
     }
+
+  
+    
 
     .board-cont-header-2 .logo {
         display: flex;
@@ -250,7 +264,8 @@
 
 @media screen and  (max-width : 670px){
     .board-contents-2 {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         padding: 0;
     }
 
@@ -277,6 +292,8 @@
         display: none;
     }
 
+    
+
     .board-contents-2 .section .task {
         min-width: 250px;
         max-width: 250px;
@@ -300,7 +317,10 @@
     .board-contents .add-new-task {
         display: flex;
         margin-top: 30px;
+        height: fit-content;
     }
+
+    
 
     .board-contents .add-new-task h2 {
         display: none;
@@ -312,6 +332,8 @@
 
     .board-contents-2 {
         margin-top: 0;
+        display: flex;
+        flex-direction: column;
     }
 }
 

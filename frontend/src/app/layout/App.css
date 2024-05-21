@@ -1,1 +1,9 @@
+.App {
+    max-width: 2000px;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F4F7FD;
+    overflow-x: hidden;
+}
 

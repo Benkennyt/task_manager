@@ -5,12 +5,13 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../../app/stores/stores';
 import { getBoards } from '../../../app/api/boardSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props: any) => {
     const { handleModals, setBoardID, setBoardID2, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex } = props;
     const { data } = useSelector((state: any) => state.boards)
     const dispatch = useAppDispatch()
-
+    const navigate = useNavigate()
     const capitalizeFirstLetter = (name: string) => {
         const words = name.split(' ')
 
@@ -50,10 +51,10 @@ const Sidebar = (props: any) => {
         <div className={toggleSideBar ? "sidebar" : "sidebar sidebar-hide"}>
             <div className="boards">
             <label className="logo sidebar-logo">TaskBender <div className='logo-2'>TB</div></label>`
-                <h3 className='board-hub'>BOARD HUB (8)</h3>
+                <h3 className='board-hub'>BOARD HUB ({data?.boardData?.data?.length})</h3>
                 <div className="boards-2">
                     <ul className='boards-list'>
-                        {data.boardData?.data?.map((board: any, index: any) => {
+                        {data.boardData?.data?.length > 0 ? data.boardData?.data?.map((board: any, index: any) => {
 
                             return (
                                 <li key={index}>
@@ -68,8 +69,13 @@ const Sidebar = (props: any) => {
                                         <p>{capitalizeFirstLetter(board.name)}</p>
                                     </div>
                                 </li>
+
                             )
-                        })}
+                        }) : <li>
+                                <div className="no-board">
+                                    <p>No board</p>
+                                </div>
+                            </li>}
                     </ul>
                     <div onClick={() => { handleModals("newBoard"), setToggleSideBar(false) }} className="create-board">
                         <BoardsIcon />
@@ -78,9 +84,9 @@ const Sidebar = (props: any) => {
 
                 </div>
             </div>
-            <div className={"profile-nav"}>
-                <div className="prfl-nav-btn" ><SettingsIcon2 /><p>Settings</p></div>
-                <div className="prfl-nav-btn" onClick={() => { localStorage.clear() }} ><SignOutIcon /><p>Sign out</p></div>
+            <div className={"bottom-set-sign"}>
+                <div onClick={() => navigate('/settings')}><SettingsIcon2 /><p>Settings</p></div>
+                <div onClick={() => { localStorage.clear(), navigate('/')  }} ><SignOutIcon /><p>Sign out</p></div>
             </div>
         </div>
     )

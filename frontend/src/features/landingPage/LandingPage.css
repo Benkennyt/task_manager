@@ -4,7 +4,7 @@
 
 .landn-pg-cont-2 {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center
 }
 
@@ -23,10 +23,12 @@
 
 .landn-pg-cont-2 .intro h1:first-child {
     font-size: 90px;
+    min-width: 810px;
 }
 
 .landn-pg-cont-2 .intro h1:nth-child(3) {
     font-size: 70px;
+    line-height: 1.2;
 }
 
 .landn-pg-cont-2 .intro h1:nth-child(5) {
@@ -34,7 +36,7 @@
 }
 
 .landn-pg-cont-2 .intro p {
-    width: 800px;
+    max-width: 800px;
     margin-top: 40px;
 }
 
@@ -46,4 +48,42 @@
 .landn-pg-cont-2 .intro .get-started {
     background-color: var(--logoColor);
     color: var(--white);
+}
+
+/* media queries */
+
+@media screen and (max-width: 1592px) {
+    .landn-pg-cont-2 {
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - 110px);
+    }
+
+    .landn-pg-cont-2 img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 842px) {
+    .landn-pg-cont-2 .intro h1:first-child {
+        display: none !important;
+    }
+
+    .landn-pg-cont-2 .intro{
+        margin-top: 0 !important;
+        margin-bottom: 190px;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    
+
+    .landn-pg-cont-2 .intro h1:nth-child(3){
+        display: none !important;
+    }
+
+    .landn-pg-cont-2 .intro h1:nth-child(5){
+        line-height: 1.2;
+    }
+
 }

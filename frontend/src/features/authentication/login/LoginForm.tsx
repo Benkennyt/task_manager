@@ -17,15 +17,19 @@ const LoginForm = () => {
   const [inputField, setInputField] = useState(new LoginForm1());
   const [showPassword, setShowPassword] = useState(false);
 
-  const {isLoginLoading, loginData, loginErrorData} = useSelector((state:any) => state.user)
+  const {isLoginLoading, loginErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
+  const token = localStorage.getItem(ACCESS_TOKEN)
 
   useEffect(() => {
-    const token = localStorage.getItem(ACCESS_TOKEN)
     if (token) {
-      navigate('home')
+      navigate('/home')
     }
-  }, [loginData])
+  }, [isLoginLoading])
+  
+  const handleLogin = async (values:any) => {
+    dispatch(login(values))
+  }
    
   const dispatch = useAppDispatch()
 
@@ -41,9 +45,6 @@ const LoginForm = () => {
     setInputField({...inputField, [e.target.name]: e.target.value}) 
   }
 
-  const loginUser = (value: any) => {
-    dispatch(login(value))
-  }
 
   return (
     <div className="sign-in-fm">
@@ -53,9 +54,8 @@ const LoginForm = () => {
             <Formik
                 initialValues={inputField}
                 enableReinitialize
-                onSubmit={(value) => 
-                  {loginUser(value)
-                 }
+                onSubmit={(values) => 
+                  handleLogin(values)
                   }
                 validationSchema={signInSchema}
             >
@@ -76,6 +76,7 @@ const LoginForm = () => {
                             placeholder="Username"
                             errors={errors}
                             touched={touched}
+                            autoComplete="off"
                         />
                         <InputTemp 
                             id="password" 
@@ -100,7 +101,7 @@ const LoginForm = () => {
                 )}
             </Formik>
             <p className="dont-hv-acc">Don't have an account? <span onClick={() => navigate('/sign-up')}>Sign Up</span></p>
-            <div className="other-signin-option">
+            {/* <div className="other-signin-option">
               <button
                 
                 className="btn btn-transition google-btn"
@@ -112,7 +113,7 @@ const LoginForm = () => {
                 <FacebookIcon />
                 Facebook
               </button>
-            </div>
+            </div> */}
       </div>
       <div className="sign-in-right">
         <h1>Welcome Back :)</h1>

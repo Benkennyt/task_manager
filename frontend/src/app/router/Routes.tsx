@@ -7,6 +7,7 @@ import RegistrationForm from "../../features/authentication/register/Registratio
 import LoginForm from "../../features/authentication/login/LoginForm";
 import Home from "../../features/home/Home";
 import App from "../layout/App";
+import Settings from "../../features/settings/Settings";
 
 export const routes: RouteObject[] = [
     {
@@ -16,7 +17,8 @@ export const routes: RouteObject[] = [
             {
                 element: <RequiredAuth/>,
                 children: [
-                    {path: 'home', element: <Home/>}
+                    {path: 'home', element: <Home/>},
+                    {path: 'settings', element: <Settings/>}
                 ]
             },
             {path: 'sign-up', element: <RegistrationForm />},

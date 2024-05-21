@@ -1,6 +1,6 @@
 import Sidebar from "./sidebar/Sidebar";
 import './Home.css';
-import ProfileImage from '../../assets/images/profile-image.jpg'
+import ProfileImage from '../../assets/images/profile-image.png'
 import { useEffect, useState } from "react";
 import { CloseIcon, HamburgerIcon, SettingsIcon2, SignOutIcon, ThreeDots, TrashIcon } from "../../assets/svg/SVG";
 import CreateNewBoards from "../../common/modals/boards/createBoard/CreateNewBoards";

@@ -14,6 +14,7 @@ import { ACCESS_TOKEN } from "../../../constants";
 
 const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
+  const [toRegister, setToRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const {isRegisterLoading, registerData, registerErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
@@ -23,13 +24,15 @@ const RegistrationForm = () => {
 
   useEffect(() => {
     const token = localStorage.getItem(ACCESS_TOKEN)
-    if (registerData?.status === 201 && !token) {
+    if (registerData.status === 201 && toRegister) {
       navigate('/sign-in')
-    } else{
+      setToRegister(false)
+    } else if (token){
       navigate('home')
     }
-  }, [])
+  }, [toRegister, registerData.status])
 
+  console.log(toRegister)
 
     const handlePasswordShowHide = () => {
     if (showPassword) {
@@ -45,6 +48,7 @@ const RegistrationForm = () => {
 
   const registerUser = (value: any) => {
     dispatch(register(value))
+    setToRegister(true)
   }
 
   return (
@@ -135,7 +139,7 @@ const RegistrationForm = () => {
                 )}
             </Formik>
             <p className="already-hv-acc">Already have an account? <span onClick={() => navigate('/sign-in')} >Sign In</span></p>
-            <div className="other-signin-option">
+            {/* <div className="other-signin-option">
               <button
                 
                 className="btn btn-transition google-btn"
@@ -147,7 +151,7 @@ const RegistrationForm = () => {
                 <FacebookIcon />
                 Facebook
               </button>
-            </div>
+            </div> */}
         </div>
         <div className="reg-right">
           <img src={RegsitrationSVG} alt="registration svg" />

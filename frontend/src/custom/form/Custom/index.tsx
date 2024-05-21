@@ -48,7 +48,7 @@ export const InputTemp = ({
       </label> */}
       <div className="pass">
         <input
-          autoComplete={autoComplete}
+          autoComplete={'off'}
           disabled={disabled}
           placeholder={placeholder}
           type={inputType}

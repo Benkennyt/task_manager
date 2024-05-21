@@ -1,0 +1,92 @@
+.security-settings-container {
+    z-index: 1;
+}
+
+.security-settings-container h4, .security-settings-container h5 {
+    font-weight: 600;
+}
+
+.password-change {
+    margin: 10px;
+
+    border-radius: 10px;
+    padding: 10px 10px 20px 20px;
+    color: var(--text-color-dark);
+}
+
+.change-pass-field h5, .change-email-field h5{
+    margin-bottom: 10px;
+}
+
+
+.input-container input {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: rgb(195, 194, 194) solid 1px;
+    outline-offset: 4px;
+    background-color: var(--white) !important;
+    outline-color: var(--primary-color);
+    outline-width: 2px;
+    color: var(--black);
+}
+
+.input-container input::placeholder, .input-container input::-webkit-input-placeholder{
+    color: var(--textGrey);
+    font-family: Inter;
+}
+
+.input-container input[type = 'text'],
+.input-container input[type = 'password'] {
+    font-family: Inter;
+    padding-left: 10px;
+}
+
+.change-pass-field button{
+    position: absolute;
+    height: 20px;
+    right: 10px;
+    top: 30%;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+}
+
+.change-pass-field button svg {
+    width: 20px;
+    height: 20px;
+    fill: rgba(0, 0, 0, 0.533);
+}
+
+.change-password-btn {
+    margin-top: 20px;
+}
+
+
+/* email-details */
+
+.email-details {
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px 10px 20px 20px;
+    color: var(--text-color-dark);
+}
+
+.email-details h5 {
+    margin-bottom: 7px;
+    margin-top: 14px;
+}
+
+.email-details p {
+    font-size: 13px;
+    margin-top: 0px;
+}
+
+.change-email {
+    border-top: solid 1px rgb(195, 194, 194);
+}
+

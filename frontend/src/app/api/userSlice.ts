@@ -37,6 +37,14 @@ export const register = createAsyncThunk<any, any>('register', async (value, _th
   }
 })
 
+export const getUser = createAsyncThunk<'', any>('getUser', async ( _thunkAPI) => {
+  try {
+    const res = await api.get('api/user/details')
+    return res
+  } catch (error: any) {
+    return _thunkAPI.rejectWithValue(error.response.data)
+  }
+})
 
 
 
@@ -46,12 +54,15 @@ const userSlice = createSlice({
     isLoggedin: false,
     isLoginLoading:false,
     isRegisterLoading:false,
+    isUserDataLoading:false,
     loginData: {},
     registerData:{},
+    userData:{},
     isErrorLogin:false,
     registerErrorData:{},
     loginErrorData: '',
     isErrorRegister:false,
+    isUserDataError:false
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -76,12 +87,25 @@ const userSlice = createSlice({
   builder.addCase(register.fulfilled, (state, action) => {
       state.isRegisterLoading = false;
       state.registerData = action.payload
-      console.log(action.payload)
   })
   builder.addCase(register.rejected, (state, action) => {
     state.isRegisterLoading = false;
     state.isErrorRegister = true
     state.registerErrorData = action.payload as RegisterErrorPayload 
+  });
+
+  // userData
+  builder.addCase(getUser.pending, (state) => {
+    state.isUserDataLoading = true;
+  });
+  builder.addCase(getUser.fulfilled, (state, action) => {
+      state.isUserDataLoading = false;
+      state.userData = action.payload
+  })
+  builder.addCase(getUser.rejected, (state) => {
+    state.isUserDataLoading = false;
+    state.isUserDataError = true
+
   });
   },
 });

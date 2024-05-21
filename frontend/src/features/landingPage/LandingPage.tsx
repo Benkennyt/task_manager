@@ -28,7 +28,7 @@ const LandingPage = () => {
           <p> 
             <span>TaskBender</span> is the ultimate task management solution designed to help you stay organized, focused, and productive. With intuitive features and seamless integration, managing your tasks has never been easier.
           </p>
-          <button className="get-started">Get Started</button>
+          <button className="get-started" onClick={() => navigate('/sign-up')}>Get Started</button>
         </section>
         <img src={ImageForLandpg} alt="landing-pg image" />
       </div>

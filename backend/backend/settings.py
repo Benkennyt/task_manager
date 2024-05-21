@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-6rcn!ylqc!7s@wit^z6+(dl8^kxec5ptk!&hhn4$ghcj!#45tg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (

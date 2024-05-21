@@ -1,0 +1,40 @@
+.account-settings-container{
+    width: 100%;
+    border-radius: 10px;
+    padding:  10px 10px 20px 20px;
+    color: var(--text-color-dark);
+    z-index: 1;
+}
+
+.name h5{
+    margin-bottom: 7px;
+    margin-top: 14px;
+}
+
+.name p {
+    margin: 0;
+}
+
+.account-settings-container ul {
+    font-size: 13px;
+    margin-top: 0px;
+    letter-spacing: 1px;
+}
+
+.edit-personal-info .btn-transparent {
+    background-color: var(--logoColor) !important;
+    color: var(--white);
+    margin-top: 20px;
+}
+
+
+.close-my-account {
+    border-top: solid red 1px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.delete-acc:hover {
+    background-color: red;
+    color: white;
+}

@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: auto;
 }
 
 .sidebar .logo {
@@ -32,10 +33,11 @@
 
 .board-hub {
     padding-left: 30px;
-    margin-bottom: 0;
+    padding-bottom: 10px;
     color: var(--white); 
     font-weight: 500;
     font-size: 14px;
+    border-bottom: 1px solid var(--borderGrey);
 }
 
 
@@ -117,6 +119,19 @@
     cursor: pointer; 
 }
 
+.no-board {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 15px;
+    padding-left: 10px;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 15px;
+    gap: 20px;
+    border-radius: 100vw 0 0 100vw;
+}
+
 .boards-list .board p {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -186,31 +201,36 @@
     margin: 0;
 }
 
-.profile-nav {
-    width: 100%;
-    color: var(--listHoverColor);
+.bottom-set-sign {
+    margin-top: 20px;
 }
 
-.prfl-nav-btn {
+.bottom-set-sign div {
     display: flex;
     gap: 20px;
     margin-left: 10px;
-    cursor: pointer;
+    margin-bottom: 20px;
+    color: var(--listHoverColor);
     width: fit-content;
- 
+    cursor: pointer;
 }
 
-.prfl-nav-btn:hover {
-    color:var(--white) ;
-}
-
-.prfl-nav-btn:hover svg {
-    fill:white;
-}
-
-.prfl-nav-btn svg {
+.bottom-set-sign div svg {
     fill: var(--listHoverColor);
 }
+
+.bottom-set-sign div p {
+    margin: 0;
+}
+
+.bottom-set-sign div:hover {
+    color: var(--white);
+}
+
+.bottom-set-sign div:hover svg {
+    fill: var(--white) ;
+}
+
 /* medial queries */
 
 @media screen and (max-width : 975px) {
@@ -224,7 +244,7 @@
 
     .sidebar-hide {
         z-index: 1;
-        animation: slideOutLeft 0.5s forwards;
+        display: none;
     }
 
     .sidebar .logo {
