@@ -15,6 +15,7 @@ from datetime import timedelta
 from dotenv import load_dotenv
 from datetime import timedelta
 import os
+from decouple import config
 
 
 load_dotenv()
@@ -101,14 +102,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER':'postgres',
-        'PASSWORD':'hGiQxzTggeTBMhNOuAStgrWyMIIClVqb',
-        'HOST':'monorail.proxy.rlwy.net',
-        'PORT':'29580',
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER':config('USER'),
+        'PASSWORD':config('PASSWORD'),
+        'HOST':config('HOST'),
+        'PORT':config('PORT'),
     }
+
 }
+
 
 
 # Password validation
