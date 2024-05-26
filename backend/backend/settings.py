@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import os
 from decouple import config
+import dj_database_url
 
 
 load_dotenv()
@@ -30,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == 'true'
+DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
 
@@ -108,11 +109,12 @@ DATABASES = {
         'HOST':config('HOST'),
         'PORT':config('PORT'),
     }
-
 }
 
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
 
-CSRF_TRUSTED_ORIGINS = ['https://generalsqz.pythonanywhere.com/']
+
 
 
 # Password validation
