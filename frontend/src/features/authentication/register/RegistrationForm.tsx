@@ -129,9 +129,9 @@ const RegistrationForm = () => {
                           handlePasswordShowHide={handlePasswordShowHide}
                           showPassword={showPassword}
                         />
-                        {isRegisterLoading ? <button className="sign-up-btn" type="submit">
+                        {isRegisterLoading ? <button disabled className="sign-up-btn1" type="submit">
                           <i className="fa fa-spinner fa-spin"></i>Loading...
-                        </button> : <button className="sign-up-btn" type="submit">
+                        </button> : <button className="sign-up-btn1" type="submit">
                           Sign Up
                         </button>}
                     </Form>

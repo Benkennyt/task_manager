@@ -32,7 +32,7 @@ nav .signbtn {
     width: 300px;
     display: flex;
     justify-content:center;
-    padding-right: 50px;
+    padding-right: 10px;
 }
 
 nav .sign-in-btn {

@@ -1,5 +1,5 @@
 .sign-in-fm {
-    width: 100vw;
+    width: 100%;
     display: flex;
     padding-top: 50px;
 }
@@ -104,14 +104,14 @@
     margin-top: -10px;
 }
 
-.sign-in-fm  .sign-up-btn {
-    background-color: var(--logoColor);
+.sign-in-fm  .sign-in-btn1 {
+    background-color: var(--logoColor) !important;
     color: var(--white);
     width: 100%;
 }
 
 
-.sign-in-fm  .sign-up-btn i {
+.sign-in-fm  .sign-in-btn1 i {
     scale: 1.7;
     margin-right: 20px;
 }
@@ -138,7 +138,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 
 .other-signin-option button {
     display: flex;

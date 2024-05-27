@@ -44,12 +44,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inter;
+  gap: 10px;
   color:var(--black) ;
   background-color: var(--white);
   cursor: pointer;
   transition:filter .1s ease,transform .1s ease-in;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
 
+}
+
+button:disabled {
+  opacity: .5;
 }
 
 button:hover {
@@ -167,7 +172,7 @@ input:focus {
   color: var(--logoColor);
   font-size: 35px;
   padding: 0;
-  padding-left: 50px;
+  padding-left: 10px;
   padding-right: 10px;
   font-weight: bold;
 }

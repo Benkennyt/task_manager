@@ -91,9 +91,9 @@ const LoginForm = () => {
                             showPassword={showPassword}
                         />
                         { loginErrorData && <p className="login-err">{loginErrorData}</p>}
-                        {isLoginLoading ? <button className="sign-up-btn" type="submit">
+                        {isLoginLoading ? <button disabled className="sign-in-btn1" type="submit">
                           <i className="fa fa-spinner fa-spin"></i>Loading...
-                        </button> : <button className="sign-up-btn" type="submit">
+                        </button> : <button className="sign-in-btn1" type="submit">
                           Sign In
                         </button>}
                     </Form>

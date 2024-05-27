@@ -1,5 +1,5 @@
 .register-fm {
-    width: 100vw;
+    width: 100%;
     display: flex;
     padding-top: 50px;
 }
@@ -82,14 +82,14 @@
     fill: rgba(0, 0, 0, 0.533);
 }
 
-.register-fm  .sign-up-btn {
+.register-fm  .sign-up-btn1 {
     background-color: var(--logoColor);
     color: var(--white);
     width: 100%;
 }
 
 
-.register-fm  .sign-up-btn i {
+.register-fm  .sign-up-btn1 i {
     scale: 1.7;
     margin-right: 20px;
 }
@@ -184,6 +184,7 @@
         min-width: 20px;
     }
 }
+
 
 @media screen and  (max-width : 460px){
    
