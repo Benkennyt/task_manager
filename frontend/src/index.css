@@ -1,6 +1,11 @@
+
+@font-face {
+  font-family: Inter1;
+  src: url(../src/assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+}
+
 :root {
-  /* font-family: "Plus Jakarta Sans", sans-serif; */
-  font-family: Inter;
+  font-family: Inter1;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -29,11 +34,6 @@ body {
   --placeHolder:rgb(175, 172, 172);
   --listHoverColor: #d5d3fb;
   
-}
-
-@font-face {
-  font-family: Inter;
-  src: url(../src/assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 
