@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 const CreateNewBoards = (props: any) => {
     const [modalReset, setModalReset] = useState(false)
     const { modal, handleModals} = props
-    const [inputField, setInputField] = useState(new BoardForm());
+    const inputField = (new BoardForm());
     const { data, isError, isLoading } = useSelector((state: any) => state.boards)
     const dispatch = useAppDispatch()
     

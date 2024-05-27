@@ -3,7 +3,6 @@ import { InputTemp } from "../../../custom/form/Custom";
 import RegsitrationSVG from '../../../assets/svg/undraw_to_do_list_re_9nt7.svg'
 import './RegistrationForm.css';
 import { useEffect, useState } from "react";
-import { FacebookIcon, GoogleIcon } from "../../../assets/svg/SVG";
 import { signUpSchema } from "../schemas";
 import { RegisterForm1 } from "../../../app/models/user";
 import { useSelector } from "react-redux";

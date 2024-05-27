@@ -2,7 +2,7 @@ import Sidebar from "./sidebar/Sidebar";
 import './Home.css';
 import ProfileImage from '../../assets/images/profile-image.png'
 import { useEffect, useState } from "react";
-import { CloseIcon, HamburgerIcon, SettingsIcon2, SignOutIcon, ThreeDots, TrashIcon } from "../../assets/svg/SVG";
+import { CloseIcon, HamburgerIcon, TrashIcon } from "../../assets/svg/SVG";
 import CreateNewBoards from "../../common/modals/boards/createBoard/CreateNewBoards";
 import DeleteBoard from "../../common/modals/boards/deleteBoard/DeleteBoard";
 import { useSelector } from "react-redux";
@@ -13,7 +13,6 @@ import { useAppDispatch } from "../../app/stores/stores";
 import {getTasks } from "../../app/api/taskSlice";
 import ViewTask from "../../common/modals/tasks/viewTask/ViewTask";
 import DeleteTask from "../../common/modals/tasks/deleteTask/DeleteTask";
-import Loading from "../../common/loading/Loading";
 
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false)

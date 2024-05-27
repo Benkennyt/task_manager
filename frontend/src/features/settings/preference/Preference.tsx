@@ -1,4 +1,3 @@
-
 import './Preference.css'
 
 const Preference = (props: any) => {

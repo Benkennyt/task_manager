@@ -3,7 +3,6 @@ import "./Settings.css";
 import AccountSettings from "./account/AccountSettings";
 import Security from "./security/Security";
 import { ProfileIcon, SecurityIcon } from "../../assets/svg/SVG";
-import NavBar from "../../app/layout/navbar/NavBar";
 import { useNavigate } from "react-router-dom";
 
 

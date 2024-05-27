@@ -2,7 +2,6 @@ import { Formik } from "formik"
 import { InputTemp } from "../../../custom/form/Custom"
 import { Form, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { FacebookIcon, GoogleIcon } from "../../../assets/svg/SVG";
 import { signInSchema } from "../schemas";
 import './LoginForm.css';
 import LoginSVG from '../../../assets/svg/undraw_login_re_4vu2.svg'

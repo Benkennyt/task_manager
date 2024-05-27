@@ -1,11 +1,10 @@
 import "./AccountSettings.css";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useAppDispatch } from "../../../app/stores/stores";
 import { getUser } from "../../../app/api/userSlice";
 import { useSelector } from "react-redux";
 
 const AccountSettings = () => {
-  const [editProfile, setEditProfile] = useState(false);
   const { userData } = useSelector((state: any) => state.user)
   const dispatch = useAppDispatch();
 
@@ -41,14 +40,8 @@ const AccountSettings = () => {
         </div>
       </div>
 
-
-      {/* {isLoading?.isUpdateTaskLoading ? <button className="update_task" type="submit">
-              <i className="fa fa-spinner fa-spin"></i>Loading...
-            </button> : dirty ? <button disabled={isSubmitting} className="update_task" type="submit">
-              Update Task
-            </button> : null} */}
       <div className="edit-personal-info">
-        <button className="btn-transparent" onClick={() => setEditProfile(true)}>Edit</button>
+        <button className="btn-transparent" >Edit</button>
       </div>
 
       <div className="close-my-account">

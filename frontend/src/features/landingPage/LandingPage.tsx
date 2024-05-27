@@ -1,4 +1,3 @@
-
 import './LandingPage.css';
 import ImageForLandpg from "../../assets/svg/undraw_completed_tasks_vs6q.svg"
 import NavBar from '../../app/layout/navbar/NavBar';
