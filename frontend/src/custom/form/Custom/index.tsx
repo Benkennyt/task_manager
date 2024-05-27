@@ -33,7 +33,6 @@ export const InputTemp = ({
   onChange,
   onBlur,
   disabled,
-  autoComplete,
   errors,
   bckenderr,
   touched,
