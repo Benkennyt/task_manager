@@ -17,10 +17,12 @@ const DeleteBoard = (props: any) => {
   const dispatch = useAppDispatch()
 
   const handleDeleteBoard = () => {
-    dispatch(deleteBoard(boardID2))
-    setTimeout(() => {
-      dispatch(getBoards())
-    }, 100)
+    dispatch(deleteBoard(boardID2)).
+      then((res) => {
+        if (res.payload.status === 204) {
+          dispatch(getBoards())
+        }
+      })
   }
 
   const handleBoardDeleteCloseBtn = () => {

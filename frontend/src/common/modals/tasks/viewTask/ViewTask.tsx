@@ -45,21 +45,30 @@ const ViewTask = (props: any) => {
             taskID: taskID
         }
         if (isChecked) {
-            dispatch(updateSubtask(checked))
+            dispatch(updateSubtask(checked)).
+            then((res) => {
+              if (res.payload.status === 200){
+                dispatch(getTasks(boardID))
+              }
+            })
         } else {
-            dispatch(updateSubtask(unChecked))
+            dispatch(updateSubtask(unChecked)).
+            then((res) => {
+              if (res.payload.status === 200){
+                dispatch(getTasks(boardID))
+              }
+            })
         }
-        setTimeout(() => {
-            dispatch(getTasks(boardID))
-        }, 100)
     };
 
     const handleTaskUpdate = (values: any) => {
-        dispatch(updateTask(values))
-        setModalReset(false)
-        setTimeout(() => {
+        dispatch(updateTask(values)).
+        then((res) => {
+          if (res.payload.status === 200){
             dispatch(getTasks(boardID))
-        }, 100)
+          }
+        })
+        setModalReset(false)
     }
 
     const handleTaskViewCloseBtn = () => {

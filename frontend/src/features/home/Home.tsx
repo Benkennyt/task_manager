@@ -46,10 +46,14 @@ const Home = () => {
 
 
   const handleModals = (id: string) => {
-    if (modal === '') {
-      setModal(id)
+    if (id === 'alert')  {
+      alert("Please create a board first")
     } else {
-      setModal('')
+      if (modal === '') {
+        setModal(id)
+      } else {
+        setModal('')
+      }
     }
   }
 
@@ -68,7 +72,7 @@ const Home = () => {
     } else if (activeBoard === null && data.boardData && data.boardData.data && data.boardData.data[0]) {
       return capitalizeFirstLetter(data.boardData.data[0].name)
     } else {
-      return "Board"
+      return "Board Name"
     }
   }
 
@@ -102,7 +106,7 @@ const Home = () => {
                   <div className='logo-2'>TB</div>
                 </label>
                 <h2>{handleBoardNameHeader()}</h2>
-                <button disabled={handleBoardNameHeader() === 'Board'} onClick={() => handleModals('newTask')}>+Add New Task</button>
+                <button className={handleBoardNameHeader() === 'Board Name' ? 'btn-diabled' : ''} onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')}>+Add New Task</button>
               </div>
               <div className="profile">
                 <p>Welcome, {capitalizeFirstLetter(userDetails.username)}</p>
@@ -119,7 +123,7 @@ const Home = () => {
           <div className="board-contents">
             <div className="board-contents-2">
               <div className="add-new-task">
-                <button disabled={handleBoardNameHeader() === 'Board'} onClick={() => handleModals('newTask')} >+Add New Task</button>
+                <button className={handleBoardNameHeader() === 'Board Name' ? 'btn-diabled' : ''} onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')} >+Add New Task</button>
               </div>
               {data && data.boardData && data.boardData.data && data.boardData.data[activeBoard] && data.boardData.data[activeBoard].todo_column && <div className="todo section">
                 <div className="content-headers">

@@ -21,11 +21,13 @@ const DeleteTask = (props:any) => {
     const dispatch = useAppDispatch()
 
     const handleDeleteTask = () => {
-        dispatch(deleteTask(values))
-        setTimeout(() => {
+      dispatch(deleteTask(values)).
+      then((res) => {
+        if (res.payload.status === 204){
           dispatch(getTasks(boardID))
-        }, 100)
-        
+        }
+      })
+      
     }
 
     useEffect(() => {

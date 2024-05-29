@@ -79,7 +79,7 @@ const Sidebar = (props: any) => {
                     </ul>
                     <div onClick={() => { handleModals("newBoard"), setToggleSideBar(false) }} className="create-board">
                         <BoardsIcon />
-                        <p>+Creare New Board</p>
+                        <p>+ Create New Board</p>
                     </div>
 
                 </div>

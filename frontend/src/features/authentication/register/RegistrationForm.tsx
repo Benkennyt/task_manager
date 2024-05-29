@@ -15,7 +15,7 @@ const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
   const [toRegister, setToRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const {isRegisterLoading, registerData, registerErrorData} = useSelector((state:any) => state.user)
+  const {isRegisterLoading, registerErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const bankendErrorUsername = registerErrorData && registerErrorData?.username &&  registerErrorData?.username[0]
@@ -23,15 +23,10 @@ const RegistrationForm = () => {
 
   useEffect(() => {
     const token = localStorage.getItem(ACCESS_TOKEN)
-    if (registerData.status === 201 && toRegister) {
-      navigate('/sign-in')
-      setToRegister(false)
-    } else if (token){
+    if (token){
       navigate('home')
     }
-  }, [toRegister, registerData.status])
-
-  console.log(toRegister)
+  }, [])
 
     const handlePasswordShowHide = () => {
     if (showPassword) {
@@ -46,9 +41,17 @@ const RegistrationForm = () => {
   }
 
   const registerUser = (value: any) => {
-    dispatch(register(value))
     setToRegister(true)
+    dispatch(register(value)).
+    then((res) => {
+      if (res.payload.status === 201){
+        navigate('/sign-in')
+        setToRegister(false)
+      }
+    })
   }
+
+  console.log(toRegister)
 
   return (
     <div className="register-fm">
@@ -60,6 +63,8 @@ const RegistrationForm = () => {
                 enableReinitialize
                 onSubmit={(value) => {registerUser(value)} }
                 validationSchema={signUpSchema}
+                validateOnChange
+                validateOnBlur
             >
                 {({ handleSubmit,
                     handleBlur,
@@ -138,19 +143,6 @@ const RegistrationForm = () => {
                 )}
             </Formik>
             <p className="already-hv-acc">Already have an account? <span onClick={() => navigate('/sign-in')} >Sign In</span></p>
-            {/* <div className="other-signin-option">
-              <button
-                
-                className="btn btn-transition google-btn"
-              >
-                <GoogleIcon />
-                Google
-              </button>
-              <button className="btn btn-transition facebook-btn">
-                <FacebookIcon />
-                Facebook
-              </button>
-            </div> */}
         </div>
         <div className="reg-right">
           <img src={RegsitrationSVG} alt="registration svg" />

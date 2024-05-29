@@ -32,11 +32,11 @@
     min-width: 10px;
 }
 
-.add-new-task button:disabled {
+.add-new-task .btn-diabled {
     opacity: .5;
 }
 
-.add-new-task button:disabled:hover {
+.add-new-task .btn-diabled:hover {
     box-shadow: unset;
 
 }

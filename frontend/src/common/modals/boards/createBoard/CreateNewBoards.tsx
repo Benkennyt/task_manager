@@ -21,12 +21,13 @@ const CreateNewBoards = (props: any) => {
 
 
     const handleCreateBoard = (val: any) => {
-        dispatch(createBoard(val))
+        dispatch(createBoard(val)).
+        then((res) => {
+            if (res.payload.status === 201){
+                dispatch(getBoards())
+            }
+        } )
         setModalReset(true)
-        setTimeout(() => {
-            dispatch(getBoards())
-        }, 100)
-
     }
 
     const handleCreateBoardCloseBtn2 = () => {

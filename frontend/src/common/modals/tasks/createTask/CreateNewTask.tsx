@@ -24,11 +24,13 @@ const CreateNewTask = (props: any) => {
   const dispatch = useAppDispatch()
 
   const handleCreateTask = (val: any) => {
-    dispatch(createTask(val))
+    dispatch(createTask(val)).
+    then((res) => {
+      if (res.payload.status === 201){
+        dispatch(getTasks(boardID))
+      }
+    })
     setModalReset(false)
-    setTimeout(() => {
-      dispatch(getTasks(boardID))
-    }, 100)
   }
 
   const handleSubtaskAdd = () => {

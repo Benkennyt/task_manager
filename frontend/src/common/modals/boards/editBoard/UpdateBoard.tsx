@@ -57,11 +57,13 @@ const UpdateBoard = (props: any) => {
       }
     });
 
-    dispatch(updateBoard(newValues))
+    dispatch(updateBoard(newValues)).
+    then((res) => {
+      if (res.payload.status === 200){
+        dispatch(getBoards())
+      }
+    })
     setModalReset(false)
-    setTimeout(() => {
-      dispatch(getBoards())
-    }, 100)
   }
 
   const handleInitialBoardName = () => {
