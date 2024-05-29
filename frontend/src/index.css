@@ -1,11 +1,5 @@
-
-@font-face {
-  font-family: Inter1;
-  src: url('../public/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
-}
-
 :root {
-  font-family: Inter1;
+  font-family: Inter;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
