@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: Inter1;
-  src: url('../src/assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
+  src: url('../public/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
 }
 
 :root {
