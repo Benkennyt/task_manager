@@ -13,8 +13,7 @@ import { ACCESS_TOKEN } from "../../../constants";
 
 const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
-  const [toRegister, setToRegister] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [passwordType, setPasswordType] = useState('');
   const {isRegisterLoading, registerErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -28,30 +27,18 @@ const RegistrationForm = () => {
     }
   }, [])
 
-    const handlePasswordShowHide = () => {
-    if (showPassword) {
-      setShowPassword(false)
-    } else{
-      setShowPassword(true)
-    }
-  }
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputField({...inputField, [e.target.name]: e.target.value}) 
   }
 
   const registerUser = (value: any) => {
-    setToRegister(true)
     dispatch(register(value)).
     then((res) => {
       if (res.payload.status === 201){
         navigate('/sign-in')
-        setToRegister(false)
       }
     })
   }
-
-  console.log(toRegister)
 
   return (
     <div className="register-fm">
@@ -111,28 +98,28 @@ const RegistrationForm = () => {
                         <InputTemp 
                             id="password" 
                             name="password" 
-                            inputType={showPassword ? 'text': "password" } 
+                            inputType={passwordType === 'password' ? 'text': "password" } 
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.password}
                             placeholder="Password"
                             errors={errors}
                             touched={touched}
-                            handlePasswordShowHide={handlePasswordShowHide}
-                            showPassword={showPassword}
+                            setPasswordType={setPasswordType}
+                            passwordType={passwordType}
                         />
                         <InputTemp 
                           id="confirmPassword"
                           name="confirmPassword" 
-                          inputType={showPassword ? 'text': "password" }
+                          inputType={passwordType === 'confirmPassword' ? 'text': "password" }
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.confirmPassword}
                           placeholder="Confirm Password"
                           errors={errors}
                           touched={touched}
-                          handlePasswordShowHide={handlePasswordShowHide}
-                          showPassword={showPassword}
+                          setPasswordType={setPasswordType}
+                          passwordType={passwordType}
                         />
                         {isRegisterLoading ? <button disabled className="sign-up-btn1" type="submit">
                           <i className="fa fa-spinner fa-spin"></i>Loading...
