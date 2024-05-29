@@ -203,34 +203,18 @@
     }
 }
 
-@media screen and  (max-width : 460px){
-   
-    .other-signin-option button {
-       gap: 20px;
-    }
-}
-
 
 @media screen and  (max-width : 439px){
-    .other-signin-option {
-        width: 100%;
+
+    .sign-in-fm .form-1 {
+        width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .sign-in-fm form {
-        width: 95vw;
+       width: 100%
     }
 }
-
-@media screen and  (max-width : 362px){
-
-    .other-signin-option {
-        flex-direction: column;
-        gap: 10px;
-        width: 95vw;
-    }
-    .other-signin-option button {
-        width: 100%;
-    }
-
-}
-
