@@ -15,15 +15,16 @@ import ViewTask from "../../common/modals/tasks/viewTask/ViewTask";
 import DeleteTask from "../../common/modals/tasks/deleteTask/DeleteTask";
 
 const Home = () => {
-  const [toggleSideBar, setToggleSideBar] = useState(false)
-  const [modal, setModal] = useState('')
-  const [boardID, setBoardID] = useState('');
-  const [boardID2, setBoardID2] = useState('');
+  const [toggleSideBar, setToggleSideBar] = useState(false);
+  const [modal, setModal] = useState<string>('');
+  const [boardID, setBoardID] = useState<string>('');
+  const [boardID2, setBoardID2] = useState<string>('');
   const [boardIndex, setBoardIndex] = useState(null);
-  const [taskID, setTaskID] = useState(null);
-  const [activeBoard, setActiveBoard] = useState(0)
+  const [taskID, setTaskID] = useState<string>('');
+  const [activeBoard, setActiveBoard] = useState<number>(0);
+
   const { data } = useSelector((state: any) => state.boards)
-  const { data: data1 } = useSelector((state: any) => state.tasks)
+  const { data: tasksData } = useSelector((state: any) => state.tasks)
   useSelector((state: any) => state.subtasks)
   const dispatch = useAppDispatch();
 
@@ -36,26 +37,26 @@ const Home = () => {
       dispatch(getTasks(boardID))
     }
   }, [boardID])
-  const handleToggle = () => {
-    if (toggleSideBar) {
-      setToggleSideBar(false)
-    } else {
-      setToggleSideBar(true)
-    }
-  }
+
+  const handleToggle = () => setToggleSideBar(prev => !prev);
 
 
   const handleModals = (id: string) => {
-    if (id === 'alert')  {
-      alert("Please create a board first")
+    if (id === 'alert') {
+      alert("Please create a board first");
     } else {
-      if (modal === '') {
-        setModal(id)
-      } else {
-        setModal('')
-      }
+      setModal(prev => (prev === '' ? id : ''));
     }
+      // or
+      // if (modal === '') {
+      //   setModal(id)
+      // } else {
+      //   setModal('')
+      // }
+    
   }
+
+  console.log(data.boardData?.data?.[activeBoard])
 
   const capitalizeFirstLetter = (name: string) => {
     const words = name.split(' ')
@@ -67,22 +68,20 @@ const Home = () => {
   }
 
   const handleBoardNameHeader = () => {
-    if (activeBoard != null && data.boardData && data.boardData.data && data.boardData.data[activeBoard]) {
-      return capitalizeFirstLetter(data.boardData?.data[activeBoard].name)
-    } else if (activeBoard === null && data.boardData && data.boardData.data && data.boardData.data[0]) {
-      return capitalizeFirstLetter(data.boardData.data[0].name)
-    } else {
-      return "Board Name"
+    if (data.boardData?.data?.[activeBoard]) {
+      return capitalizeFirstLetter(data.boardData.data[activeBoard].name);
+    } else if (data.boardData?.data?.[0]) {
+      return capitalizeFirstLetter(data.boardData.data[0].name);
     }
-  }
-
+    return "Board Name";
+  };
   
  
 
 
   const handleSubtasks = (task: any) => {
-    const total = task.subtasks.length
-    const done = task.subtasks.filter((subtask: any) => subtask.status === true).length
+    const total = task.subtasks.length;
+    const done = task.subtasks.filter((subtask: any) => subtask.status === true).length;
     return (
       <p className="subtasks-count">{`${done} of ${total} subtasks`}</p>
     )
@@ -91,12 +90,14 @@ const Home = () => {
   return (
     <div className="home-cont">
       <Sidebar toggleSideBar={toggleSideBar} handleModals={handleModals} setBoardID={setBoardID} setBoardID2={setBoardID2} setBoardIndex={setBoardIndex} activeBoard={activeBoard} setActiveBoard={setActiveBoard} setToggleSideBar={setToggleSideBar} />
-      <CreateNewBoards handleModals={handleModals} modal={modal} activeBoard={activeBoard} setActiveBoard={setActiveBoard} boardID={boardID}  setBoardID={setBoardID}/>
+      <CreateNewBoards handleModals={handleModals} modal={modal} setActiveBoard={setActiveBoard}/>
       <DeleteBoard handleModals={handleModals} modal={modal} boardID2={boardID2} setActiveBoard={setActiveBoard} />
       <UpdateBoard handleModals={handleModals} modal={modal} boardID2={boardID2} boardIndex={boardIndex} />
       <CreateNewTask handleModals={handleModals} modal={modal} boardID={boardID} activeBoard={activeBoard}  />
       <ViewTask handleModals={handleModals} modal={modal} taskID={taskID} boardID={boardID} activeBoard={activeBoard}/>
       <DeleteTask handleModals={handleModals} modal={modal} taskID={taskID} boardID={boardID}/>
+
+
       <div className="home-cont-2">
         <div className="board-cont">
           <div className="board-cont-header">
@@ -123,119 +124,44 @@ const Home = () => {
           <div className="board-contents">
             <div className="board-contents-2">
               <div className="add-new-task">
-                <button className={handleBoardNameHeader() === 'Board Name' ? 'btn-diabled' : ''} onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')} >+Add New Task</button>
+                <button 
+                  className={handleBoardNameHeader() === 'Board Name' ? 'btn-disabled' : ''} 
+                  onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')}
+                >
+                  +Add New Task
+                </button>
               </div>
-              {data && data.boardData && data.boardData.data && data.boardData.data[activeBoard] && data.boardData.data[activeBoard].todo_column && <div className="todo section">
-                <div className="content-headers">
-                  <p>TODO</p>
-                  <div className="line" style={{ backgroundColor: 'gray' }}></div>
-                </div>
-                <div className="tasks">
-                  {data1?.tasksData?.data?.filter((task: { status: string; }) => task.status === 'TODO').length > 0
-                    ?
-                    (data1?.tasksData?.data?.map((task: any, index: number) => {
-                      if (task.status === 'TODO') {
-
-                        return (
-                          <div onClick={() => {handleModals('viewTask'), setTaskID(task.id)}} className="task" key={index}>
-                            <div className="delete-task-icon" onClick={(e) => e.stopPropagation()}>
-                              <div className="delete-task-icon-2" onClick={() => {setTaskID(task.id), handleModals('deleteTask')}}>
-                                <TrashIcon/>
+              {['todo_column', 'overdue_column', 'inprogress_column', 'completed_column'].map((column, index) => {
+                if (data.boardData?.data?.[activeBoard]?.[column]) {
+                  const columnTasks = tasksData.tasksData?.data?.filter((task: any) => task.status.toUpperCase() === column.split('_')[0].toUpperCase()) || [];
+                  return (
+                    <div key={index} className={`${column} section`}>
+                      <div className="content-headers">
+                        <p>{column.split('_').join(' ').toUpperCase()}</p>
+                        <div className="line" style={{ backgroundColor: column === 'todo_column' ? 'gray' : column === 'overdue_column' ? 'rgb(198, 68, 68)' : column === 'inprogress_column' ? 'rgb(185, 146, 73)' : 'rgb(69, 173, 69)' }}></div>
+                      </div>
+                      <div className="tasks">
+                        {columnTasks.length > 0 ? (
+                          columnTasks.map((task: any, taskIndex: number) => (
+                            <div key={taskIndex} onClick={() => { handleModals('viewTask'); setTaskID(task.id); }} className="task">
+                              <div className="delete-task-icon" onClick={(e) => e.stopPropagation()}>
+                                <div className="delete-task-icon-2" onClick={() => { setTaskID(task.id); handleModals('deleteTask'); }}>
+                                  <TrashIcon />
+                                </div>
                               </div>
+                              <p className="task-header">{task.name}</p>
+                              {handleSubtasks(task)}
                             </div>
-                            <p className="task-header">{task.name}</p>
-                            {handleSubtasks(task)}
-                          </div>
-                        );
-                      }
-                      return null;
-                    }))
-                    :
-                    (<div className="no-task">No <span>TODO</span> task.</div>)}
-                </div>
-              </div>}
-
-              {data && data.boardData && data.boardData.data && data.boardData.data[activeBoard] && data.boardData.data[activeBoard].overdue_column && <div className="overdue section">
-                <div className="content-headers">
-                  <p>OVERDUE</p>
-                  <div className="line" style={{ backgroundColor: 'rgb(198, 68, 68)' }}></div>
-                </div>
-                <div className="tasks">
-                  {data1?.tasksData?.data?.filter((task: { status: string; }) => task.status === 'OVERDUE').length > 0 ? (data1?.tasksData?.data?.map((task: any, index: number) => {
-                    if (task.status === 'OVERDUE') {
-                      return (
-                        <div onClick={() => {handleModals('viewTask'), setTaskID(task.id)}} className="task" key={index}>
-                          <div className="delete-task-icon" onClick={(e) => e.stopPropagation()}>
-                            <div className="delete-task-icon-2" onClick={() => {setTaskID(task.id), handleModals('deleteTask')}}>
-                              <TrashIcon/>
-                            </div>
-                          </div>
-                          <p className="task-header">{task.name}</p>
-                          {handleSubtasks(task)}
-                        </div>
-                      );
-                    }
-                    return null;
-                  }))
-                    :
-                    (<div className="no-task">No <span>OVERDUE</span> task.</div>)}
-                </div>
-              </div>}
-
-              {data && data.boardData && data.boardData.data && data.boardData.data[activeBoard] && data.boardData.data[activeBoard].inprogress_column && <div className="in-progress section">
-                <div className="content-headers">
-                  <p>IN PROGRESS</p>
-                  <div className="line" style={{ backgroundColor: 'rgb(185, 146, 73)' }}></div>
-                </div>
-                <div className="tasks">
-                  {data1?.tasksData?.data?.filter((task: { status: string; }) => task.status === 'INPROGRESS').length > 0 ? (data1?.tasksData?.data?.map((task: any, index: number) => {
-                    if (task.status === 'INPROGRESS') {
-                      return (
-                        <div onClick={() => {handleModals('viewTask'), setTaskID(task.id)}} className="task" key={index}>
-                          <div className="delete-task-icon" onClick={(e) => e.stopPropagation()}>
-                            <div className="delete-task-icon-2" onClick={() => {setTaskID(task.id), handleModals('deleteTask')}}>
-                              <TrashIcon/>
-                            </div>
-                          </div>
-                          <p className="task-header">{task.name}</p>
-                          {handleSubtasks(task)}
-                        </div>
-                      );
-                    }
-                    return null;
-                  }))
-                    :
-                    (<div className="no-task">No <span>IN-PROGRESS</span> task.</div>)}
-                </div>
-              </div>}
-
-              {data && data.boardData && data.boardData.data && data.boardData.data[activeBoard] && data.boardData.data[activeBoard].completed_column && <div className="done section">
-                <div className="content-headers">
-                  <p>COMPLETED</p>
-                  <div className="line" style={{ backgroundColor: 'rgb(69, 173, 69)' }}></div>
-                </div>
-
-                <div className="tasks">
-                  {data1?.tasksData?.data?.filter((task: { status: string; }) => task.status === 'COMPLETED').length > 0 ? (data1?.tasksData?.data?.map((task: any, index: number) => {
-                    if (task.status === 'COMPLETED') {
-                      return (
-                        <div onClick={() => {handleModals('viewTask'), setTaskID(task.id)}} className="task" key={index}>
-                          <div className="delete-task-icon" onClick={(e) => e.stopPropagation()}>
-                            <div className="delete-task-icon-2" onClick={() => {setTaskID(task.id), handleModals('deleteTask')}}>
-                              <TrashIcon/>
-                            </div>
-                          </div>
-                          <p className="task-header">{task.name}</p>
-                          {handleSubtasks(task)}
-                        </div>
-                      );
-                    }
-                    return null;
-                  }))
-                    :
-                    (<div className="no-task">No <span>COMPLETED</span> task.</div>)}
-                </div>
-              </div>}
+                          ))
+                        ) : (
+                          <div className="no-task">No <span>{column.split('_').join(' ').toUpperCase()}</span> task.</div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
             </div>
           </div>
 
