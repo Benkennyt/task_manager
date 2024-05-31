@@ -74,7 +74,7 @@ const Sidebar = (props: SidebarProps) => {
                 <h3 className='board-hub'>BOARD HUB ({data?.boardData?.data?.length})</h3>
                 <div className="boards-2">
                     <ul className='boards-list'>
-                        {isLoading.isGetBoardLoading ? <Loading/> : (data.boardData?.data?.length > 0 ? data.boardData?.data?.map((board: any, index: number) => {
+                        {data.boardData?.data?.length > 0 ? data.boardData?.data?.map((board: any, index: number) => {
 
                             return (
                                 <li key={index}>
@@ -95,7 +95,7 @@ const Sidebar = (props: SidebarProps) => {
                                 <div className="no-board">
                                     <p>No board</p>
                                 </div>
-                            </li>)}
+                            </li>}
                     </ul>
                     <div onClick={() => { handleModals("newBoard"), setToggleSideBar(false) }} className="create-board">
                         <BoardsIcon />
