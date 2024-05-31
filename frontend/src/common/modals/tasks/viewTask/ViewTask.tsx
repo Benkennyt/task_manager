@@ -6,10 +6,11 @@ import { Form } from 'react-router-dom';
 import { CloseIcon, EditPen } from '../../../../assets/svg/SVG';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../app/stores/stores';
-import { getTask1, getTasks, updateTask } from '../../../../app/api/taskSlice';
+import {updateTask } from '../../../../app/api/taskSlice';
 import SuccessIcon from "../../../../assets/svg/success_icon.svg";
 import errIcon from "../../../../assets/svg/errIcon.svg";
 import { updateSubtask } from '../../../../app/api/subtaskSlice';
+import { getBoards } from '../../../../app/api/boardSlice';
 
 interface ViewTaskProps {
     modal: string;
@@ -26,20 +27,17 @@ const ViewTask = (props: ViewTaskProps) => {
     const [modalReset, setModalReset] = useState(false);
     const [taskUpdated, setTaskUpdated] = useState(false);
 
-    const { data, isError, isLoading } = useSelector((state: any) => state.tasks);
+    const {isError, isLoading } = useSelector((state: any) => state.tasks);
     const { data: boardsData } = useSelector((state: any) => state.boards)
     const dispatch = useAppDispatch();
-    const taskData = data.taskData1?.data?.[0] || {};
+    // console.log(boardsData?.boardData?.data?.[activeBoard]?.tasks?.[0])
+
 
     useEffect(() => {
-        if (taskID != null) {
-            dispatch(getTask1(taskID))
-        }
-
         if(modal === 'updateTask') {
             setModalReset(false)
           };
-    }, [taskID, modal]);
+    }, [ modal]);
 
     const handleCheckboxChange = (event: { target: { checked: any; }; }, subtask: any) => {
         const status = event.target.checked ? 'true' : 'false';
@@ -52,15 +50,26 @@ const ViewTask = (props: ViewTaskProps) => {
 
         dispatch(updateSubtask(payload)).then((res) => {
             if (res.payload.status === 200) {
-                dispatch(getTasks(boardID))
+                dispatch(getBoards())
             }
         });
     };
 
+    const getTaskDetails = (taskID:string | null) => {
+        const tasks = boardsData?.boardData?.data?.[activeBoard]?.tasks || [] ;
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i]?.id === taskID) {
+                return tasks[i]
+            }
+        }
+        return null;
+    }
+
+
     const handleTaskUpdate = (values: any) => {
         dispatch(updateTask(values)).then((res) => {
             if (res.payload.status === 200) {
-                dispatch(getTasks(boardID))
+                dispatch(getBoards())
                 setTaskUpdated(true)
             }
         })
@@ -100,7 +109,7 @@ const ViewTask = (props: ViewTaskProps) => {
 
     const renderForm = () => (
         <Formik
-            initialValues={{ name: taskData.name, description: taskData.description, subtasks: [], status: taskData.status, boardID, taskID }}
+            initialValues={{ name: getTaskDetails(taskID)?.name, description: getTaskDetails(taskID)?.description, subtasks: [], status: getTaskDetails(taskID)?.status, boardID, taskID }}
             enableReinitialize
             onSubmit={(value) => {
                 handleTaskUpdate(value);
@@ -120,7 +129,7 @@ const ViewTask = (props: ViewTaskProps) => {
                         />
                     ) : (
                         <div className='task-title-edit'>
-                            <p>{taskData.name}</p>
+                            <p>{getTaskDetails(taskID).name}</p>
                             <div className="task-edit" onClick={() => setEditTitle(true)}><EditPen /></div>
                         </div>
                     )}
@@ -138,7 +147,7 @@ const ViewTask = (props: ViewTaskProps) => {
                         />
                     ) : (
                         <div className='task-title-edit'>
-                            <p>{taskData.description}</p>
+                            <p>{getTaskDetails(taskID).description}</p>
                             <div className="task-edit" onClick={() => setEditDescription(true)}><EditPen /></div>
                         </div>
                     )}
@@ -161,7 +170,7 @@ const ViewTask = (props: ViewTaskProps) => {
                     </Field>
 
                     <p className='subtasks'>Subtasks</p>
-                    {taskData.subtasks?.map((subtask: any, index: number) => (
+                    {getTaskDetails(taskID).subtasks?.map((subtask: any, index: number) => (
                         <div className="subtask" key={index}>
                             <p>{subtask.name}</p>
                             <div className="checkbox-wrapper">

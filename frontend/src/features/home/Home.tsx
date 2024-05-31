@@ -1,7 +1,7 @@
 import Sidebar from "./sidebar/Sidebar";
 import './Home.css';
-import ProfileImage from '../../assets/images/profile-image.png'
-import { useEffect, useState } from "react";
+import ProfileImage from '../../assets/images/profile-image.png';
+import { useState } from "react";
 import { CloseIcon, HamburgerIcon, TrashIcon } from "../../assets/svg/SVG";
 import CreateNewBoards from "../../common/modals/boards/createBoard/CreateNewBoards";
 import DeleteBoard from "../../common/modals/boards/deleteBoard/DeleteBoard";
@@ -9,8 +9,6 @@ import { useSelector } from "react-redux";
 import { USER_DETAILS } from "../../constants";
 import UpdateBoard from "../../common/modals/boards/editBoard/UpdateBoard";
 import CreateNewTask from "../../common/modals/tasks/createTask/CreateNewTask";
-import { useAppDispatch } from "../../app/stores/stores";
-import {getTasks } from "../../app/api/taskSlice";
 import ViewTask from "../../common/modals/tasks/viewTask/ViewTask";
 import DeleteTask from "../../common/modals/tasks/deleteTask/DeleteTask";
 
@@ -19,25 +17,15 @@ const Home = () => {
   const [modal, setModal] = useState<string>('');
   const [boardID, setBoardID] = useState<string>('');
   const [boardID2, setBoardID2] = useState<string>('');
-  const [boardIndex, setBoardIndex] = useState(null);
+  const [boardIndex, setBoardIndex] = useState<number | null>(null);
   const [taskID, setTaskID] = useState<string>('');
   const [activeBoard, setActiveBoard] = useState<number>(0);
 
-  const { data } = useSelector((state: any) => state.boards)
-  const { data: tasksData } = useSelector((state: any) => state.tasks)
-  useSelector((state: any) => state.subtasks)
-  const dispatch = useAppDispatch();
-
+  const { data } = useSelector((state: any) => state.boards);
+ 
 
   const getUserDetails = localStorage.getItem(USER_DETAILS) || ''
   const userDetails = JSON.parse(getUserDetails)
-
-  useEffect(() => {
-    if (boardID != '') {
-      dispatch(getTasks(boardID))
-    }
-  }, [boardID])
-
   const handleToggle = () => setToggleSideBar(prev => !prev);
 
 
@@ -56,7 +44,6 @@ const Home = () => {
     
   }
 
-  console.log(data.boardData?.data?.[activeBoard])
 
   const capitalizeFirstLetter = (name: string) => {
     const words = name.split(' ')
@@ -73,7 +60,6 @@ const Home = () => {
     } else if (data.boardData?.data?.[0]) {
       return capitalizeFirstLetter(data.boardData.data[0].name);
     }
-    return "Board Name";
   };
   
  
@@ -133,13 +119,14 @@ const Home = () => {
               </div>
               {['todo_column', 'overdue_column', 'inprogress_column', 'completed_column'].map((column, index) => {
                 if (data.boardData?.data?.[activeBoard]?.[column]) {
-                  const columnTasks = tasksData.tasksData?.data?.filter((task: any) => task.status.toUpperCase() === column.split('_')[0].toUpperCase()) || [];
+                  const columnTasks = data?.boardData?.data?.[activeBoard]?.tasks.filter((task: any) => task.status.toUpperCase() === column.split('_')[0].toUpperCase()) || [];
                   return (
                     <div key={index} className={`${column} section`}>
                       <div className="content-headers">
                         <p>{column.split('_').join(' ').toUpperCase()}</p>
                         <div className="line" style={{ backgroundColor: column === 'todo_column' ? 'gray' : column === 'overdue_column' ? 'rgb(198, 68, 68)' : column === 'inprogress_column' ? 'rgb(185, 146, 73)' : 'rgb(69, 173, 69)' }}></div>
                       </div>
+
                       <div className="tasks">
                         {columnTasks.length > 0 ? (
                           columnTasks.map((task: any, taskIndex: number) => (

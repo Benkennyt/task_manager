@@ -28,7 +28,7 @@ interface UpdateBoardProps {
   modal: string;
   handleModals: (modalType: string) => void;
   boardID2: string;
-  boardIndex: null;
+  boardIndex: number | null;
 }
 
 const UpdateBoard = (props: UpdateBoardProps) => {

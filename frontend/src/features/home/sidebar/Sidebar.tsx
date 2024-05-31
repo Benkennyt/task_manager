@@ -6,12 +6,25 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../../app/stores/stores';
 import { getBoards } from '../../../app/api/boardSlice';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../../common/loading/Loading';
 
-const Sidebar = (props: any) => {
+interface SidebarProps {
+    handleModals: (id: string) => void;
+    setBoardID: (id: string) => void;
+    setBoardID2: (id: string) => void;
+    activeBoard: number;
+    setActiveBoard: (index: number) => void;
+    toggleSideBar: boolean;
+    setToggleSideBar: (toggle: boolean) => void;
+    setBoardIndex: (index: number | null) => void;
+}
+
+const Sidebar = (props: SidebarProps) => {
     const { handleModals, setBoardID, setBoardID2, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex } = props;
-    const { data } = useSelector((state: any) => state.boards)
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
+    const { data, isLoading } = useSelector((state: any) => state.boards);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    
     const capitalizeFirstLetter = (name: string) => {
         const words = name.split(' ')
 
@@ -21,7 +34,7 @@ const Sidebar = (props: any) => {
             }
         }
         return words.join(" ")
-    }
+    };
 
 
     useEffect(() => {
@@ -29,7 +42,7 @@ const Sidebar = (props: any) => {
     }, [])
 
     useEffect(() => {
-        if (data && data.boardData && data.boardData.data && data.boardData.data[0]) {
+        if (data.boardData.data?.[0]) {
             setBoardID(data.boardData.data[activeBoard].id)
         }
     }, [data])
@@ -40,11 +53,18 @@ const Sidebar = (props: any) => {
         handleModals('deleteBoard')
     }
 
-    const handleUpdateBoard = (options: { id: any; index: any; }) => {
-        setBoardID2(options.id)
-        setBoardIndex(options.index)
-        handleModals('updateBoard')
-    }
+    const handleUpdateBoard = (id: string, index: number) => {
+        setBoardID2(id);
+        setBoardIndex(index);
+        handleModals('updateBoard');
+        setToggleSideBar(false);
+    };
+
+    const handleBoardClick = (id: string, index: number) => {
+        setActiveBoard(index);
+        setBoardID(id);
+        setToggleSideBar(false);
+    };
 
 
     return (
@@ -54,17 +74,17 @@ const Sidebar = (props: any) => {
                 <h3 className='board-hub'>BOARD HUB ({data?.boardData?.data?.length})</h3>
                 <div className="boards-2">
                     <ul className='boards-list'>
-                        {data.boardData?.data?.length > 0 ? data.boardData?.data?.map((board: any, index: any) => {
+                        {isLoading.isGetBoardLoading ? <Loading/> : (data.boardData?.data?.length > 0 ? data.boardData?.data?.map((board: any, index: number) => {
 
                             return (
                                 <li key={index}>
-                                    <div className="board-icon trash-icon" onClick={() => { handleDeleteBoard(board.id), setToggleSideBar(false) }}>
+                                    <div className="board-icon trash-icon" onClick={() => () => handleDeleteBoard(board.id)}>
                                         <TrashIcon />
                                     </div>
-                                    <div className="board-icon edit-icon" onClick={() => { handleUpdateBoard({ id: board.id, index: index }), setToggleSideBar(false) }}>
+                                    <div className="board-icon edit-icon" onClick={() => handleUpdateBoard(board.id, index )}>
                                         <EditPen />
                                     </div>
-                                    <div onClick={() => { setActiveBoard(index), setToggleSideBar(false), setBoardID(board.id) }} className={activeBoard === index ? 'board active' : 'board'}>
+                                    <div onClick={() => handleBoardClick(board.id, index)} className={activeBoard === index ? 'board active' : 'board'}>
                                         <BoardsIcon />
                                         <p>{capitalizeFirstLetter(board.name)}</p>
                                     </div>
@@ -75,7 +95,7 @@ const Sidebar = (props: any) => {
                                 <div className="no-board">
                                     <p>No board</p>
                                 </div>
-                            </li>}
+                            </li>)}
                     </ul>
                     <div onClick={() => { handleModals("newBoard"), setToggleSideBar(false) }} className="create-board">
                         <BoardsIcon />

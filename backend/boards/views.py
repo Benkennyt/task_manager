@@ -53,18 +53,6 @@ class TaskListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-
-class TaskList(generics.ListAPIView):
-    serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        task_id = self.kwargs['pk']
-        return Task.objects.filter(id=task_id)
-
-    
-
-
 class TaskDelete(generics.DestroyAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]

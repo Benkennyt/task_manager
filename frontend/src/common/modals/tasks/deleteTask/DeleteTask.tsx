@@ -6,8 +6,9 @@ import { useSelector } from 'react-redux';
 import { CloseIcon, TrashIcon } from '../../../../assets/svg/SVG';
 import { useEffect, useState } from 'react';
 import SuccessIcon from "../../../../assets/svg/success_icon.svg";
-import { deleteTask, getTasks } from '../../../../app/api/taskSlice';
 import errIcon from "../../../../assets/svg/errIcon.svg";
+import { getBoards } from '../../../../app/api/boardSlice';
+import { deleteTask } from '../../../../app/api/taskSlice';
 
 interface DeleteTaskProps {
   handleModals: (modalType: string) => void;
@@ -30,15 +31,15 @@ const DeleteTask = (props:DeleteTaskProps) => {
     }, [modal])
 
     const values = {
-      boardID:boardID,
-      taskID:taskID
+      boardID,
+      taskID
     };
 
     const handleDeleteTask = () => {
       dispatch(deleteTask(values)).
       then((res) => {
         if (res.payload.status === 204){
-          dispatch(getTasks(boardID))
+          dispatch(getBoards())
           setTaskDeleted(true)
         }
       })

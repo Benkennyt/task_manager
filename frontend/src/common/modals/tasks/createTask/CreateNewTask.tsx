@@ -5,12 +5,12 @@ import { Form } from 'react-router-dom';
 import { CloseIcon } from '../../../../assets/svg/SVG';
 import SuccessIcon from "../../../../assets/svg/success_icon.svg";
 import { useAppDispatch } from '../../../../app/stores/stores';
-import { getTasks } from '../../../../app/api/taskSlice';
 import { useSelector } from 'react-redux';
 import { createTask } from '../../../../app/api/taskSlice';
 import { useEffect, useState } from 'react';
 import { InitialValues1, Subtask } from '../../../../app/models/user';
 import errIcon from "../../../../assets/svg/errIcon.svg";
+import { getBoards } from '../../../../app/api/boardSlice';
 
 interface CreateNewTaskProps {
   modal: string;
@@ -39,7 +39,7 @@ const CreateNewTask = (props: CreateNewTaskProps) => {
     dispatch(createTask(values)).
       then((res) => {
         if (res.payload.status === 201) {
-          dispatch(getTasks(boardID))
+          dispatch(getBoards())
           setTaskCreated(true)
         }
       })
