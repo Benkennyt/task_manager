@@ -47,7 +47,7 @@ const RequiredAuth = () => {
 
 
   return (
-    isAuthorized === 'true' ? <Outlet/> : isAuthorized === 'false' ? <Navigate to='sign-in'/> : <div>Loading...</div>
+    isAuthorized === 'true' ? <Outlet/> : isAuthorized === 'false' && <Navigate to='sign-in'/>
   )
 }
 

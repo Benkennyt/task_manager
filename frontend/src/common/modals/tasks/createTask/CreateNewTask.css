@@ -45,7 +45,7 @@
     border: rgb(195, 194, 194) solid 1px;
     outline-offset: 4px;
     background-color: var(--white);
-    outline-color: var(--primary-color);
+    outline-color: var(--logoColor);
     outline-width: 2px;
     color: var(--black);
 }
