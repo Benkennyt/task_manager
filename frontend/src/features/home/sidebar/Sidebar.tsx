@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../../app/stores/stores';
 import { getBoards } from '../../../app/api/boardSlice';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../../common/loading/Loading';
 
 interface SidebarProps {
     handleModals: (id: string) => void;
@@ -21,7 +20,7 @@ interface SidebarProps {
 
 const Sidebar = (props: SidebarProps) => {
     const { handleModals, setBoardID, setBoardID2, activeBoard, setActiveBoard, toggleSideBar, setToggleSideBar, setBoardIndex } = props;
-    const { data, isLoading } = useSelector((state: any) => state.boards);
+    const { data } = useSelector((state: any) => state.boards);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     
