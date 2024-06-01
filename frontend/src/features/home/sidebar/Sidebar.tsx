@@ -77,7 +77,7 @@ const Sidebar = (props: SidebarProps) => {
 
                             return (
                                 <li key={index}>
-                                    <div className="board-icon trash-icon" onClick={() => () => handleDeleteBoard(board.id)}>
+                                    <div className="board-icon trash-icon" onClick={() => handleDeleteBoard(board.id)}>
                                         <TrashIcon />
                                     </div>
                                     <div className="board-icon edit-icon" onClick={() => handleUpdateBoard(board.id, index )}>

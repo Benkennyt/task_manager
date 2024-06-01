@@ -59,9 +59,12 @@ const Home = () => {
       return capitalizeFirstLetter(data.boardData.data[activeBoard].name);
     } else if (data.boardData?.data?.[0]) {
       return capitalizeFirstLetter(data.boardData.data[0].name);
+    }else {
+      return ''
     }
   };
   
+  console.log(handleBoardNameHeader())
  
 
 
@@ -93,7 +96,7 @@ const Home = () => {
                   <div className='logo-2'>TB</div>
                 </label>
                 <h2>{handleBoardNameHeader()}</h2>
-                <button className={handleBoardNameHeader() === 'Board Name' ? 'btn-diabled' : ''} onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')}>+Add New Task</button>
+                <button className={handleBoardNameHeader() === '' ? 'btn-diabled' : ''} onClick={() => handleModals(handleBoardNameHeader() === '' ? 'alert' : 'newTask')}>+Add New Task</button>
               </div>
               <div className="profile">
                 <p>Welcome, {capitalizeFirstLetter(userDetails.username)}</p>
@@ -111,8 +114,8 @@ const Home = () => {
             <div className="board-contents-2">
               <div className="add-new-task">
                 <button 
-                  className={handleBoardNameHeader() === 'Board Name' ? 'btn-disabled' : ''} 
-                  onClick={() => handleModals(handleBoardNameHeader() === 'Board Name' ? 'alert' : 'newTask')}
+                  className={handleBoardNameHeader() === '' ? 'btn-disabled' : ''} 
+                  onClick={() => handleModals(handleBoardNameHeader() === '' ? 'alert' : 'newTask')}
                 >
                   +Add New Task
                 </button>
