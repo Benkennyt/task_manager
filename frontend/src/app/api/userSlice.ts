@@ -11,7 +11,7 @@ interface RegisterErrorPayload {
 
 export const login = createAsyncThunk<string, any>('login', async (value, _thunkAPI) => {
   try {
-    const res = await api.post('/api/token/', {username: value.username, password: value.password})
+    const res = await api.post('/api/token', {username: value.username, password: value.password})
     localStorage.setItem(ACCESS_TOKEN, res.data.access)
     localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
     return await api.get('api/user/details')
