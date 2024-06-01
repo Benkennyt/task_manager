@@ -32,11 +32,11 @@
     min-width: 10px;
 }
 
-.add-new-task button:disabled {
+.add-new-task .btn-diabled {
     opacity: .5;
 }
 
-.add-new-task button:disabled:hover {
+.add-new-task .btn-diabled:hover {
     box-shadow: unset;
 
 }
@@ -236,14 +236,21 @@
     .board-cont-header-2 .profile .nav-btn button {
         box-shadow: unset;
         background-color: transparent;
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         padding: 0;
         margin: 0;
+        margin-top: 5px;
+        margin-left: 5px;
     }
 
     .board-cont-header-2 .profile .nav-btn button:hover {
         transform: unset;
+    }
+
+    .board-cont-header-2 .profile .nav-btn button svg {
+        width: 30px;
+        height: 30px;
     }
 }
 

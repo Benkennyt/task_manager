@@ -1,11 +1,5 @@
-
-@font-face {
-  font-family: Inter1;
-  src: url(../src/assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
-}
-
 :root {
-  font-family: Inter1;
+  font-family: Inter;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -60,6 +54,10 @@ button:disabled {
 button:hover {
   filter: brightness(.95);
   transform: translateY(-2px);
+}
+
+.fa {
+  margin-right: 20px;
 }
 
 .trash svg{

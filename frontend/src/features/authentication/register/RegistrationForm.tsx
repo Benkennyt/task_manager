@@ -13,9 +13,8 @@ import { ACCESS_TOKEN } from "../../../constants";
 
 const RegistrationForm = () => {
   const [inputField, setInputField] = useState(new RegisterForm1());
-  const [toRegister, setToRegister] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const {isRegisterLoading, registerData, registerErrorData} = useSelector((state:any) => state.user)
+  const [passwordType, setPasswordType] = useState('');
+  const {isRegisterLoading, registerErrorData} = useSelector((state:any) => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const bankendErrorUsername = registerErrorData && registerErrorData?.username &&  registerErrorData?.username[0]
@@ -23,31 +22,22 @@ const RegistrationForm = () => {
 
   useEffect(() => {
     const token = localStorage.getItem(ACCESS_TOKEN)
-    if (registerData.status === 201 && toRegister) {
-      navigate('/sign-in')
-      setToRegister(false)
-    } else if (token){
+    if (token){
       navigate('home')
     }
-  }, [toRegister, registerData.status])
-
-  console.log(toRegister)
-
-    const handlePasswordShowHide = () => {
-    if (showPassword) {
-      setShowPassword(false)
-    } else{
-      setShowPassword(true)
-    }
-  }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputField({...inputField, [e.target.name]: e.target.value}) 
   }
 
   const registerUser = (value: any) => {
-    dispatch(register(value))
-    setToRegister(true)
+    dispatch(register(value)).
+    then((res) => {
+      if (res.payload.status === 201){
+        navigate('/sign-in')
+      }
+    })
   }
 
   return (
@@ -60,6 +50,8 @@ const RegistrationForm = () => {
                 enableReinitialize
                 onSubmit={(value) => {registerUser(value)} }
                 validationSchema={signUpSchema}
+                validateOnChange
+                validateOnBlur
             >
                 {({ handleSubmit,
                     handleBlur,
@@ -106,28 +98,28 @@ const RegistrationForm = () => {
                         <InputTemp 
                             id="password" 
                             name="password" 
-                            inputType={showPassword ? 'text': "password" } 
+                            inputType={passwordType === 'password' ? 'text': "password" } 
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.password}
                             placeholder="Password"
                             errors={errors}
                             touched={touched}
-                            handlePasswordShowHide={handlePasswordShowHide}
-                            showPassword={showPassword}
+                            setPasswordType={setPasswordType}
+                            passwordType={passwordType}
                         />
                         <InputTemp 
                           id="confirmPassword"
                           name="confirmPassword" 
-                          inputType={showPassword ? 'text': "password" }
+                          inputType={passwordType === 'confirmPassword' ? 'text': "password" }
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.confirmPassword}
                           placeholder="Confirm Password"
                           errors={errors}
                           touched={touched}
-                          handlePasswordShowHide={handlePasswordShowHide}
-                          showPassword={showPassword}
+                          setPasswordType={setPasswordType}
+                          passwordType={passwordType}
                         />
                         {isRegisterLoading ? <button disabled className="sign-up-btn1" type="submit">
                           <i className="fa fa-spinner fa-spin"></i>Loading...
@@ -138,19 +130,6 @@ const RegistrationForm = () => {
                 )}
             </Formik>
             <p className="already-hv-acc">Already have an account? <span onClick={() => navigate('/sign-in')} >Sign In</span></p>
-            {/* <div className="other-signin-option">
-              <button
-                
-                className="btn btn-transition google-btn"
-              >
-                <GoogleIcon />
-                Google
-              </button>
-              <button className="btn btn-transition facebook-btn">
-                <FacebookIcon />
-                Facebook
-              </button>
-            </div> */}
         </div>
         <div className="reg-right">
           <img src={RegsitrationSVG} alt="registration svg" />

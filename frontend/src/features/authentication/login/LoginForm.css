@@ -46,36 +46,44 @@
 
 
 .sign-in-fm form {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
 
+.sign-in-fm .field {
+    width: 100%;
+    margin: 0 auto;
+}
 
-
-.sign-in-fm input {
-    width: calc(100% - 12px);
+.sign-in-fm .field input {
+    width: 100%;
     height: 40px;
     margin-bottom: 20px;
     margin-top: 10px;
     font-size: 15px;
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     border-radius: 6px;
-    border: rgb(195, 194, 194) solid 1px;
-    outline-offset: 4px;
+    border: 1px solid rgb(195, 194, 194);
+    outline:none;
     background-color: var(--white);
-    outline-color: var(--primary-color);
-    outline-width: 2px;
     color: var(--black);
+    padding-left: 5px;
+    box-sizing: border-box;
 }
 
-.sign-in-fm input::placeholder, .sign-in-fm input::-webkit-input-placeholder{
+.sign-in-fm input::placeholder, 
+.sign-in-fm input::-webkit-input-placeholder {
     color: var(--black);
-    font-family: Inter;
+    font-family: 'Inter';
 }
 
-.sign-in-fm input[type = 'text'], .sign-in-fm input[type = 'password'], .sign-in-fm input[type= 'email']{
-    font-family: Inter;
-    padding-left: 10px;
+.sign-in-fm input[type='text'], 
+.sign-in-fm input[type='password'], 
+.sign-in-fm input[type='email'] {
+    font-family: 'Inter';
 }
+
 
 .sign-in-fm .pass{
     position: relative;
@@ -86,7 +94,7 @@
     height: 20px;
     width: 40px;
     top: 27%;
-    right: .5%;
+    right: 1.5px;
     padding: 0px;
     margin: 0px;
     background-color: transparent;
@@ -130,33 +138,6 @@
 
 .dont-hv-acc span:hover{
     filter: contrast(.5);
-}
-
-.other-signin-option {
-    margin-top: 20px;
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.other-signin-option button {
-    display: flex;
-    gap: 30px;
-    width: 45%;
-    justify-content: center;
-    align-items: center;
-    border: solid 1px rgb(186, 185, 185);
-    background-color: white !important;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.other-signin-option .facebook-btn svg {
-    fill: #3b5998;
-}
-
-.other-signin-option button svg{
-    width: 20px;
 }
 
 /* media queries............... */
@@ -203,34 +184,18 @@
     }
 }
 
-@media screen and  (max-width : 460px){
-   
-    .other-signin-option button {
-       gap: 20px;
-    }
-}
-
 
 @media screen and  (max-width : 439px){
-    .other-signin-option {
-        width: 100%;
+
+    .sign-in-fm .form-1 {
+        width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .sign-in-fm form {
-        width: 95vw;
+       width: 100%
     }
 }
-
-@media screen and  (max-width : 362px){
-
-    .other-signin-option {
-        flex-direction: column;
-        gap: 10px;
-        width: 95vw;
-    }
-    .other-signin-option button {
-        width: 100%;
-    }
-
-}
-

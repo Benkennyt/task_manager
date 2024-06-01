@@ -1,6 +1,3 @@
-
-
-
 export interface ILoginForm1 {
     username: string,
     password: string,
