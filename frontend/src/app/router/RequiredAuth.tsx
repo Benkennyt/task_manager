@@ -24,7 +24,7 @@ const RequiredAuth = () => {
                 setIsAuthorized('false')
             }
         } catch (error) {
-            setIsAuthorized('false');
+            setIsAuthorized('false')
             localStorage.clear()
         }
     };
@@ -42,6 +42,7 @@ const RequiredAuth = () => {
             await refreshToken();
         } else {
             setIsAuthorized('true');
+            localStorage.clear()
         }
     };
 
