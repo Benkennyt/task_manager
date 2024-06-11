@@ -8,7 +8,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants"
 const RequiredAuth = () => {
   const [isAuthorized, setIsAuthorized] = useState('null');
     useEffect(() => {
-        auth().catch(() => setIsAuthorized('false'))
+        auth().catch(() => {setIsAuthorized('false'), localStorage.clear()})
     }, [])
 
 
@@ -42,7 +42,6 @@ const RequiredAuth = () => {
             await refreshToken();
         } else {
             setIsAuthorized('true');
-            localStorage.clear()
         }
     };
 
